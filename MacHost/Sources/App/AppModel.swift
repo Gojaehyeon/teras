@@ -56,7 +56,7 @@ final class AppModel: ObservableObject {
     }
 
     var menuBarSymbol: String {
-        sessions.activeSessionCount > 0 ? "display.2" : "display"
+        sessions.activeSessionCount > 0 ? "iphone.and.arrow.forward" : "iphone.landscape"
     }
 
     // MARK: - Windows
