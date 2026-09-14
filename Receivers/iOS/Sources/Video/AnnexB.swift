@@ -1,5 +1,5 @@
 import Foundation
-import TandemProtocol
+import TerasProtocol
 
 /// Annex-B bitstream helpers.
 ///
@@ -159,7 +159,7 @@ enum AnnexB {
 }
 
 extension Data {
-    /// Local big-endian append; `TandemProtocol`'s equivalent is internal to
+    /// Local big-endian append; `TerasProtocol`'s equivalent is internal to
     /// that module.
     mutating func appendBigEndianUInt32(_ value: UInt32) {
         var be = value.bigEndian

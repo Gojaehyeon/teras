@@ -1,9 +1,9 @@
 import Foundation
 import Network
-import TandemProtocol
+import TerasProtocol
 
 /// Something the host can dial: a phone on a cable or a receiver on the network.
-enum TandemEndpoint: Hashable, Identifiable, Sendable {
+enum TerasEndpoint: Hashable, Identifiable, Sendable {
     case usbIOS(udid: String, deviceID: UInt32, name: String)
     case usbAndroid(serial: String, model: String)
     case lan(peer: LanPeer)
@@ -80,16 +80,16 @@ enum DialerError: LocalizedError {
 enum Dialer {
     static let connectTimeout: TimeInterval = 6
 
-    static func dial(_ endpoint: TandemEndpoint, adb: AdbBridge) async throws -> DialedConnection {
+    static func dial(_ endpoint: TerasEndpoint, adb: AdbBridge) async throws -> DialedConnection {
         switch endpoint {
         case .usbIOS(_, let deviceID, _):
             // usbmuxd hands back a socket that is already a byte pipe to the
             // device's port; there is no Nagle to disable on it.
-            let connection = try await UsbmuxClient.connect(deviceID: deviceID, port: Tandem.port)
+            let connection = try await UsbmuxClient.connect(deviceID: deviceID, port: Teras.port)
             return DialedConnection(connection: connection, transport: .usb)
 
         case .usbAndroid(let serial, _):
-            let localPort = try adb.forward(serial: serial, remotePort: Tandem.port)
+            let localPort = try adb.forward(serial: serial, remotePort: Teras.port)
             do {
                 let connection = try await dialTCP(host: "127.0.0.1", port: UInt16(localPort), peerToPeer: false)
                 return DialedConnection(connection: connection, transport: .usb, teardown: {
@@ -130,7 +130,7 @@ enum Dialer {
     }
 
     private static func waitUntilReady(_ connection: NWConnection) async throws {
-        let queue = DispatchQueue(label: "app.tandem.dialer")
+        let queue = DispatchQueue(label: "app.teras.dialer")
         do {
             try await withThrowingTaskGroup(of: Void.self) { group in
                 group.addTask {

@@ -1,5 +1,5 @@
 import SwiftUI
-import TandemProtocol
+import TerasProtocol
 
 /// The menu that drops down from the menu-bar icon.
 struct MenuBarContent: View {

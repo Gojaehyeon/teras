@@ -1,6 +1,6 @@
 import XCTest
-import TandemProtocol
-@testable import TandemReceiver
+import TerasProtocol
+@testable import TerasReceiver
 
 final class ReceiverSessionTests: XCTestCase {
 
@@ -14,7 +14,7 @@ final class ReceiverSessionTests: XCTestCase {
 
         let ackFrame = try XCTUnwrap(channel.firstFrame(ofType: .helloAck))
         let ack: HelloAck = try ackFrame.decode()
-        XCTAssertEqual(ack.pv, Tandem.protocolVersion)
+        XCTAssertEqual(ack.pv, Teras.protocolVersion)
         XCTAssertEqual(ack.deviceId, Vectors.deviceId)
         XCTAssertEqual(ack.platform, .ios)
         XCTAssertEqual(ack.model, "iPhone16,1")
@@ -144,11 +144,11 @@ final class ReceiverSessionTests: XCTestCase {
         XCTAssertFalse(ack.paired)
 
         let required: PairRequired = try XCTUnwrap(channel.firstFrame(ofType: .pairRequired)).decode()
-        XCTAssertEqual(required.attemptsLeft, Tandem.pairMaxAttempts)
+        XCTAssertEqual(required.attemptsLeft, Teras.pairMaxAttempts)
         XCTAssertEqual(session.state, .pairing(pin: Vectors.pin, attemptsLeft: 3))
 
         // The proof the Mac derives from PIN 123456 and the two nonces.
-        XCTAssertEqual(TandemCrypto.pinKey(pin: Vectors.pin,
+        XCTAssertEqual(TerasCrypto.pinKey(pin: Vectors.pin,
                                            deviceId: Vectors.deviceId,
                                            hostId: Vectors.hostId), Vectors.pinKey)
         session.handle(try Frame.json(.pair, PairMessage(proof: Vectors.pairProof)))

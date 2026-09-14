@@ -1,8 +1,8 @@
 import CoreGraphics
 import Foundation
-import TandemProtocol
+import TerasProtocol
 import XCTest
-@testable import TandemCore
+@testable import TerasCore
 
 /// In-memory `PeerChannel`: records what the session sends and lets a test
 /// play the receiver's part.
@@ -168,7 +168,7 @@ enum Fixtures {
     }
 
     static func settingsStore(_ function: String = #function) -> DeviceSettingsStore {
-        let suite = "app.tandem.tests.\(abs(function.hashValue))"
+        let suite = "app.teras.tests.\(abs(function.hashValue))"
         let defaults = UserDefaults(suiteName: suite) ?? .standard
         defaults.removePersistentDomain(forName: suite)
         return DeviceSettingsStore(defaults: defaults)

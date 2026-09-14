@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tandem</string>
+    <string name="app_name">Teras</string>
 
-    <string name="idle_instruction">Connect a USB cable and open Tandem on your Mac</string>
+    <string name="idle_instruction">Connect a USB cable and open Teras on your Mac</string>
 
     <string name="status_listening">Ready on port 41777</string>
     <string name="status_not_listening">Not listening</string>

@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import VideoToolbox
 import CoreMedia
-import TandemProtocol
+import TerasProtocol
 
 /// Everything the receiver reports about itself in HELLO_ACK (PROTOCOL §3.2).
 /// Built on the main actor, then handed to the connection queue as a value.

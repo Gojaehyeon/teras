@@ -1,6 +1,6 @@
 import Foundation
 import CoreGraphics
-import TandemProtocol
+import TerasProtocol
 
 /// Apple Pencil geometry, mapped to the protocol's stylus fields
 /// (PROTOCOL §6.1). Kept free of UIKit so the trigonometry is unit testable:

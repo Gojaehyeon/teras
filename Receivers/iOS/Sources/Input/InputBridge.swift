@@ -1,6 +1,6 @@
 import Foundation
 import UIKit
-import TandemProtocol
+import TerasProtocol
 
 /// Transparent overlay that turns touches, Apple Pencil input, indirect
 /// pointer hover and hardware key presses into protocol frames (PROTOCOL §6).

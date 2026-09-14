@@ -1,5 +1,5 @@
 import XCTest
-@testable import TandemCore
+@testable import TerasCore
 
 /// Talks to the real usbmuxd on this Mac. Skips when nothing is plugged in, so
 /// it is safe to run on a build machine.

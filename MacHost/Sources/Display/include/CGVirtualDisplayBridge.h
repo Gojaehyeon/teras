@@ -1,6 +1,6 @@
 //
 //  CGVirtualDisplayBridge.h
-//  Tandem
+//  Teras
 //
 //  Adapted from SideScreen (MIT licence) — MacHost/Sources/CGVirtualDisplayBridge.h.
 //  Copyright (c) SideScreen contributors. See THIRD_PARTY_NOTICES.md.
@@ -10,8 +10,8 @@
 //  that already exist in the running system so Swift can message them.
 //
 
-#ifndef TandemCGVirtualDisplayBridge_h
-#define TandemCGVirtualDisplayBridge_h
+#ifndef TerasCGVirtualDisplayBridge_h
+#define TerasCGVirtualDisplayBridge_h
 
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
@@ -69,4 +69,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#endif /* TandemCGVirtualDisplayBridge_h */
+#endif /* TerasCGVirtualDisplayBridge_h */

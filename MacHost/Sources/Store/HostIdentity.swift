@@ -1,5 +1,5 @@
 import Foundation
-import TandemProtocol
+import TerasProtocol
 
 /// This Mac's stable identity on the wire. The id is generated once and kept in
 /// user defaults; receivers file their pairing secret under it.
@@ -26,6 +26,6 @@ enum HostIdentity {
         let info = Bundle.main.infoDictionary
         let version = info?["CFBundleShortVersionString"] as? String ?? "1.0.0"
         let build = Int(info?["CFBundleVersion"] as? String ?? "1") ?? 1
-        return AppInfo(name: "Tandem", version: version, build: build)
+        return AppInfo(name: "Teras", version: version, build: build)
     }
 }

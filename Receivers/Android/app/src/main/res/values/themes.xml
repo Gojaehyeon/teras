@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Tandem" parent="android:Theme.Material.NoActionBar">
-        <item name="android:windowBackground">@color/tandem_background</item>
+    <style name="Theme.Teras" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/teras_background</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>

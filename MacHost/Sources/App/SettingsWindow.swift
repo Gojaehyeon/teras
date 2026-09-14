@@ -1,5 +1,5 @@
 import SwiftUI
-import TandemProtocol
+import TerasProtocol
 
 /// The Settings window: general preferences, paired devices, permissions and
 /// a live log.

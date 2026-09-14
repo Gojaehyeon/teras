@@ -7,7 +7,7 @@ import Foundation
 /// still yields a stable id for the lifetime of the install.
 enum DeviceIdentity {
     private static let account = "deviceId"
-    private static let defaultsKey = "app.tandem.receiver.deviceId"
+    private static let defaultsKey = "app.teras.receiver.deviceId"
     private static let lock = NSLock()
     private static var cached: String?
 

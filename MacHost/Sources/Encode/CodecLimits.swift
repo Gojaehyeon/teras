@@ -1,5 +1,5 @@
 import Foundation
-import TandemProtocol
+import TerasProtocol
 
 //
 //  Adapted from SideScreen (MIT licence) — MacHost/Sources/CodecLimits.swift.

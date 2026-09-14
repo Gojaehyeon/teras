@@ -20,5 +20,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TandemReceiver"
+rootProject.name = "TerasReceiver"
 include(":app")

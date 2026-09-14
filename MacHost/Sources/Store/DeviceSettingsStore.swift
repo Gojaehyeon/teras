@@ -1,5 +1,5 @@
 import Foundation
-import TandemProtocol
+import TerasProtocol
 
 /// What the user chose for one device. Defaults are what most people want:
 /// best quality the link allows, 60 fps, HiDPI on, extended (not mirrored).

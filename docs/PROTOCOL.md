@@ -1,4 +1,4 @@
-# Tandem Wire Protocol v1
+# Teras Wire Protocol v1
 
 Status: normative for `pv = 1`. This is the single contract shared by the Mac
 host (`MacHost/`), the iOS receiver (`Receivers/iOS/`) and the Android
@@ -20,7 +20,7 @@ receiver (`Receivers/Android/`). Change this document first, code second.
     `Result 0` reply the same socket is a transparent byte pipe.
   * Android over USB: host runs `adb forward tcp:0 tcp:41777` (adb prints the
     allocated local port) and dials `127.0.0.1:<local>`.
-  * WiFi/LAN: receiver advertises Bonjour/DNS‑SD service `_tandem._tcp`;
+  * WiFi/LAN: receiver advertises Bonjour/DNS‑SD service `_teras._tcp`;
     host browses and dials the resolved address.
 * One TCP stream carries video, control and input in both directions.
   Implementations MUST set `TCP_NODELAY`.
@@ -65,8 +65,8 @@ payload = [u64 counter][ciphertext][16‑byte GCM tag]
   increments by 1 per frame per direction. A receiver of a counter that is
   not strictly increasing MUST close the connection.
 * AAD = the single byte `0x7F`.
-* Two keys: `key_h2r = HKDF‑SHA256(secret, salt = hostNonce‖deviceNonce, info = "tandem-v1-h2r", 32)`,
-  `key_r2h = … info = "tandem-v1-r2h"`.
+* Two keys: `key_h2r = HKDF‑SHA256(secret, salt = hostNonce‖deviceNonce, info = "teras-v1-h2r", 32)`,
+  `key_r2h = … info = "teras-v1-r2h"`.
 * USB transports MAY skip encryption (`hello.encrypt = false`). Hosts SHOULD
   encrypt on LAN and MUST NOT encrypt when no `secret` exists.
 
@@ -111,7 +111,7 @@ UTF‑8, unknown keys MUST be ignored (additive evolution).
   "transport": "usb" | "lan",
   "hostNonce": "base64(16 bytes)",
   "encrypt": true | false,     // host wants the ENC envelope after AUTH_OK
-  "app": { "name": "Tandem", "version": "1.0.0", "build": 12 }
+  "app": { "name": "Teras", "version": "1.0.0", "build": 12 }
 }
 ```
 
@@ -151,7 +151,7 @@ waives authentication.
 3. Receiver verifies. On failure: `PAIR_FAIL`; after 3 failures the receiver
    rotates the PIN and closes. On success the receiver generates
    `secret = 32 random bytes`, stores `(hostId → secret)`, and replies
-   `PAIR_OK` with `box = AES‑256‑GCM(key = HKDF(pinKey, salt = hostNonce‖deviceNonce, info = "tandem-v1-pairbox", 32), nonce = 12 zero bytes, plaintext = secret)` (ciphertext ‖ tag).
+   `PAIR_OK` with `box = AES‑256‑GCM(key = HKDF(pinKey, salt = hostNonce‖deviceNonce, info = "teras-v1-pairbox", 32), nonce = 12 zero bytes, plaintext = secret)` (ciphertext ‖ tag).
    Host decrypts, stores `(deviceId → secret)`. Both then continue with AUTH
    on the same connection using the fresh nonces already exchanged.
 

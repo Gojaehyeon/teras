@@ -1,5 +1,5 @@
 import SwiftUI
-import TandemProtocol
+import TerasProtocol
 
 struct StatsOverlay: View {
     let stats: VideoStatsSnapshot

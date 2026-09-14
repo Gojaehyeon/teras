@@ -1,7 +1,7 @@
 import CoreMedia
 import CoreVideo
 import Foundation
-import TandemProtocol
+import TerasProtocol
 import VideoToolbox
 import os
 

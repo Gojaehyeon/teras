@@ -1,6 +1,6 @@
-/* Tandem — 한국어 */
+/* Teras — 한국어 */
 
-"app.name" = "Tandem";
+"app.name" = "Teras";
 
 /* 메뉴 막대 */
 "menu.usb" = "USB";
@@ -15,7 +15,7 @@
 "menu.settings" = "설정 열기…";
 "menu.onboarding" = "설정 안내…";
 "menu.permissionsNeeded" = "설정을 마쳐야 스트리밍을 시작합니다";
-"menu.quit" = "Tandem 종료";
+"menu.quit" = "Teras 종료";
 
 /* 기기 상태 */
 "status.idle" = "연결되지 않음";
@@ -41,7 +41,7 @@
 "settings.devices" = "기기";
 "settings.permissions" = "권한";
 "settings.diagnostics" = "진단";
-"settings.launchAtLogin" = "로그인할 때 Tandem 열기";
+"settings.launchAtLogin" = "로그인할 때 Teras 열기";
 "settings.showStats" = "메뉴에 프레임 수와 지연 시간 표시";
 "settings.hostName" = "이 Mac";
 "settings.hostId" = "호스트 ID";
@@ -57,7 +57,7 @@
 
 /* 권한 */
 "permission.screenRecording" = "화면 기록";
-"permission.screenRecordingHelp" = "Tandem이 만든 가상 디스플레이를 기록해 기기로 화면을 보냅니다. 다른 화면은 기록하지 않습니다.";
+"permission.screenRecordingHelp" = "Teras이 만든 가상 디스플레이를 기록해 기기로 화면을 보냅니다. 다른 화면은 기록하지 않습니다.";
 "permission.accessibility" = "손쉬운 사용";
 "permission.accessibilityHelp" = "기기에서의 터치, 스크롤, 키 입력으로 이 Mac의 포인터를 움직이고 글자를 입력합니다.";
 "permission.localNetwork" = "로컬 네트워크";
@@ -81,9 +81,9 @@
 "pairing.done" = "페어링을 마쳤습니다.";
 
 /* 온보딩 */
-"onboarding.title" = "Tandem 설정";
-"onboarding.welcomeTitle" = "Tandem을 시작합니다";
-"onboarding.welcomeBody" = "Tandem은 iPhone, iPad, Android 기기를 이 Mac의 확장 디스플레이로 만들어 줍니다. USB와 Wi-Fi 모두 지원합니다. 시스템 권한 세 가지가 필요하며, 이 안내가 차례로 도와줍니다.";
+"onboarding.title" = "Teras 설정";
+"onboarding.welcomeTitle" = "Teras을 시작합니다";
+"onboarding.welcomeBody" = "Teras은 iPhone, iPad, Android 기기를 이 Mac의 확장 디스플레이로 만들어 줍니다. USB와 Wi-Fi 모두 지원합니다. 시스템 권한 세 가지가 필요하며, 이 안내가 차례로 도와줍니다.";
 "onboarding.networkTitle" = "Wi-Fi 검색";
 "onboarding.networkBody" = "Wi-Fi로 기기를 찾으려면 macOS가 로컬 네트워크 접근 권한을 한 번 묻습니다. 케이블로 연결한 기기는 이 선택과 관계없이 동작합니다.";
 "onboarding.androidTitle" = "USB로 Android 연결";
@@ -92,3 +92,5 @@
 "onboarding.back" = "이전";
 "onboarding.next" = "다음";
 "onboarding.finish" = "완료";
+
+"status.needsScreenRecording" = "시스템 설정에서 화면 기록을 허용하세요";

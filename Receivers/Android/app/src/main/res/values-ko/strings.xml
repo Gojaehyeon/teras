@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tandem</string>
+    <string name="app_name">Teras</string>
 
-    <string name="idle_instruction">USB 케이블을 연결하고 Mac에서 Tandem을 실행하세요</string>
+    <string name="idle_instruction">USB 케이블을 연결하고 Mac에서 Teras을 실행하세요</string>
 
     <string name="status_listening">포트 41777에서 대기 중</string>
     <string name="status_not_listening">대기 중이 아님</string>

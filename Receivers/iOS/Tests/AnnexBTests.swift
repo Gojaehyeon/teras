@@ -1,6 +1,6 @@
 import XCTest
-import TandemProtocol
-@testable import TandemReceiver
+import TerasProtocol
+@testable import TerasReceiver
 
 final class AnnexBTests: XCTestCase {
 

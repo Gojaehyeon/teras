@@ -1,4 +1,4 @@
-# Tandem
+# Teras
 
 Turn the phones and tablets you already own — iPhone, iPad, Android — into
 real extended displays for your Mac. Cable first (USB‑C / Lightning, lowest
@@ -7,7 +7,7 @@ latency), WiFi second (PIN‑paired, encrypted).
 * `docs/PROTOCOL.md` — the wire contract every peer implements.
 * `docs/PLAN.md` — positioning, architecture, milestones, risks.
 * `docs/VECTORS.md` — crypto interop vectors shared by all implementations.
-* `Shared/TandemProtocol` — Swift package (framing, messages, crypto) used by the Mac host and the iOS receiver.
+* `Shared/TerasProtocol` — Swift package (framing, messages, crypto) used by the Mac host and the iOS receiver.
 * `MacHost` — macOS menu‑bar host app (xcodegen).
 * `Receivers/iOS` — iPhone/iPad receiver (xcodegen).
 * `Receivers/Android` — Android receiver (Gradle).
@@ -16,13 +16,13 @@ latency), WiFi second (PIN‑paired, encrypted).
 
 ```sh
 # shared package
-cd Shared/TandemProtocol && swift test
+cd Shared/TerasProtocol && swift test
 
 # Mac host
-cd MacHost && xcodegen generate && xcodebuild -scheme Tandem -configuration Debug -derivedDataPath build build
+cd MacHost && xcodegen generate && xcodebuild -scheme Teras -configuration Debug -derivedDataPath build build
 
 # iOS receiver
-cd Receivers/iOS && xcodegen generate && xcodebuild -scheme TandemReceiver -destination 'generic/platform=iOS Simulator' -derivedDataPath build build
+cd Receivers/iOS && xcodegen generate && xcodebuild -scheme TerasReceiver -destination 'generic/platform=iOS Simulator' -derivedDataPath build build
 
 # Android receiver
 cd Receivers/Android && ./gradlew assembleDebug

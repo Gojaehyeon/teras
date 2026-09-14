@@ -1,7 +1,8 @@
 import Combine
 import Foundation
+import CoreGraphics
 import Network
-import TandemProtocol
+import TerasProtocol
 
 /// What the UI shows next to a device.
 enum DeviceStatus: Equatable, Sendable {
@@ -20,7 +21,7 @@ enum DeviceStatus: Equatable, Sendable {
 /// One row in the menu.
 struct DeviceRow: Identifiable, Equatable, Sendable {
     var id: String
-    var endpoint: TandemEndpoint
+    var endpoint: TerasEndpoint
     var status: DeviceStatus = .idle
     var stats: Stats?
     var rttMs: Double = 0
@@ -64,6 +65,8 @@ final class SessionManager: ObservableObject {
 
     /// How often an attached-but-not-listening USB device is retried.
     private static let retryInterval: TimeInterval = 2
+    /// Prompt for Screen Recording once per launch, not on every retry tick.
+    private var screenRecordingRequested = false
 
     var activeSessionCount: Int {
         sessions.values.filter { $0.state.isStreaming }.count
@@ -76,7 +79,7 @@ final class SessionManager: ObservableObject {
     func start() {
         guard !started else { return }
         started = true
-        Log.info(.app, "Tandem host \(HostIdentity.appInfo.version) starting as \(HostIdentity.hostId)")
+        Log.info(.app, "Teras host \(HostIdentity.appInfo.version) starting as \(HostIdentity.hostId)")
 
         startUSBiOSWatch()
         startAndroidWatch()
@@ -129,7 +132,7 @@ final class SessionManager: ObservableObject {
     private func handleiOSAttached(_ device: UsbmuxDevice) async {
         let fallbackName = settingsStore.settings(for: "usb-ios:\(device.udid)").lastKnownName
             ?? String(device.udid.suffix(6))
-        var endpoint = TandemEndpoint.usbIOS(udid: device.udid, deviceID: device.deviceID, name: fallbackName)
+        var endpoint = TerasEndpoint.usbIOS(udid: device.udid, deviceID: device.deviceID, name: fallbackName)
         upsert(endpoint, status: .connecting)
         connect(endpoint)
 
@@ -189,7 +192,7 @@ final class SessionManager: ObservableObject {
         }
 
         for device in devices {
-            let endpoint = TandemEndpoint.usbAndroid(serial: device.serial, model: device.model ?? device.serial)
+            let endpoint = TerasEndpoint.usbAndroid(serial: device.serial, model: device.model ?? device.serial)
             switch device.state {
             case .device:
                 let existing = rows[endpoint.id]
@@ -224,7 +227,7 @@ final class SessionManager: ObservableObject {
             rows.removeValue(forKey: key)
         }
         for peer in peers {
-            let endpoint = TandemEndpoint.lan(peer: peer)
+            let endpoint = TerasEndpoint.lan(peer: peer)
             let existing = rows[endpoint.id]
             upsert(endpoint, status: existing?.status ?? .idle)
             if existing == nil || existing?.status == .idle,
@@ -238,8 +241,21 @@ final class SessionManager: ObservableObject {
 
     // MARK: - Connecting
 
-    func connect(_ endpoint: TandemEndpoint) {
+    func connect(_ endpoint: TerasEndpoint) {
         guard sessions[endpoint.id] == nil, !connecting.contains(endpoint.id) else { return }
+        // Without Screen Recording every session would create a virtual display,
+        // fail to capture it and tear it down again two seconds later — the
+        // Mac's screens flicker on each reconfiguration. Hold the device in
+        // `failed` until the permission exists; the retry timer re-checks.
+        guard CGPreflightScreenCaptureAccess() else {
+            if !screenRecordingRequested {
+                screenRecordingRequested = true
+                Log.error(.session, "Screen Recording permission missing; not dialing \(endpoint.id)")
+                _ = CGRequestScreenCaptureAccess()
+            }
+            setStatus(.failed(L("status.needsScreenRecording")), for: endpoint.id)
+            return
+        }
         connecting.insert(endpoint.id)
         setStatus(.connecting, for: endpoint.id)
 
@@ -268,7 +284,7 @@ final class SessionManager: ObservableObject {
         }
     }
 
-    private func wire(_ session: DisplaySession, endpoint: TandemEndpoint, dialed: DialedConnection) {
+    private func wire(_ session: DisplaySession, endpoint: TerasEndpoint, dialed: DialedConnection) {
         session.onStateChange = { [weak self] state in
             guard let self else { return }
             switch state {
@@ -314,7 +330,7 @@ final class SessionManager: ObservableObject {
         }
     }
 
-    private func handleDialFailure(_ error: Error, endpoint: TandemEndpoint) {
+    private func handleDialFailure(_ error: Error, endpoint: TerasEndpoint) {
         guard rows[endpoint.id] != nil else { return }
         if Self.isConnectionRefused(error) {
             // Normal while the receiver app is not open. Stay quiet about it.
@@ -418,7 +434,7 @@ final class SessionManager: ObservableObject {
 
     // MARK: - Row bookkeeping
 
-    private func upsert(_ endpoint: TandemEndpoint, status: DeviceStatus) {
+    private func upsert(_ endpoint: TerasEndpoint, status: DeviceStatus) {
         if var existing = rows[endpoint.id] {
             existing.endpoint = endpoint
             existing.status = status

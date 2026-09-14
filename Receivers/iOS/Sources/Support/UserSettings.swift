@@ -5,8 +5,8 @@ import Combine
 @MainActor
 final class UserSettings: ObservableObject {
     private enum Keys {
-        static let deviceNameOverride = "app.tandem.receiver.deviceNameOverride"
-        static let showStats = "app.tandem.receiver.showStats"
+        static let deviceNameOverride = "app.teras.receiver.deviceNameOverride"
+        static let showStats = "app.teras.receiver.showStats"
     }
 
     private let defaults: UserDefaults

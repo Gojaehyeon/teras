@@ -1,4 +1,4 @@
-# Tandem macOS host.
+# Teras macOS host.
 CONFIG ?= Debug
 DERIVED := build
 
@@ -19,8 +19,8 @@ test:
 	@scripts/build.sh Debug test
 
 run: build
-	@open "$(DERIVED)/Build/Products/Debug/Tandem.app"
+	@open "$(DERIVED)/Build/Products/Debug/Teras.app"
 
 clean:
 	@scripts/build.sh Debug clean
-	@rm -rf $(DERIVED) Tandem.xcodeproj
+	@rm -rf $(DERIVED) Teras.xcodeproj

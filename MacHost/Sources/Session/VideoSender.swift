@@ -1,5 +1,5 @@
 import Foundation
-import TandemProtocol
+import TerasProtocol
 
 /// Turns encoded pictures into VIDEO frames and applies the send-side drop
 /// policy. Called from the encoder's thread, so all state is behind a lock.

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "app.tandem.receiver"
+    namespace = "app.teras.receiver"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "app.tandem.receiver"
+        applicationId = "app.teras.receiver"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

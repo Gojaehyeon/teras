@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import AVFoundation
 import CoreMedia
-import TandemProtocol
+import TerasProtocol
 
 /// A `UIView` backed by `AVSampleBufferDisplayLayer` that turns VIDEO frames
 /// into pictures.
@@ -28,7 +28,7 @@ final class VideoRendererView: UIView, VideoSink {
     /// Throttle between KEYFRAME_REQUEST frames.
     static let keyframeRequestInterval: TimeInterval = 0.5
 
-    private let videoQueue = DispatchQueue(label: "app.tandem.receiver.video", qos: .userInteractive)
+    private let videoQueue = DispatchQueue(label: "app.teras.receiver.video", qos: .userInteractive)
 
     // Pipeline state; touched on videoQueue only.
     private var codec: Codec = .h264
@@ -180,7 +180,7 @@ final class VideoRendererView: UIView, VideoSink {
         }
 
         if let failure = layerFailure() {
-            NSLog("[Tandem] display layer failed: \(failure.localizedDescription)")
+            NSLog("[Teras] display layer failed: \(failure.localizedDescription)")
             flushLayer()
             formatDescription = nil
             hasKeyframe = false
@@ -199,7 +199,7 @@ final class VideoRendererView: UIView, VideoSink {
                     formatDescription = description
                     lastParameterSets = sets
                 } else {
-                    NSLog("[Tandem] could not build a format description from the parameter sets")
+                    NSLog("[Teras] could not build a format description from the parameter sets")
                 }
             }
         }
@@ -230,7 +230,7 @@ final class VideoRendererView: UIView, VideoSink {
         guard let sample = VideoFormatFactory.makeSampleBuffer(data: sampleData,
                                                               formatDescription: description,
                                                               presentationTime: presentationTime) else {
-            NSLog("[Tandem] could not build a sample buffer")
+            NSLog("[Teras] could not build a sample buffer")
             recordDropped(now: started)
             requestKeyframe(now: started)
             return

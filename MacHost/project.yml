@@ -1,7 +1,7 @@
-name: Tandem
+name: Teras
 
 options:
-  bundleIdPrefix: app.tandem
+  bundleIdPrefix: app.teras
   createIntermediateGroups: true
   deploymentTarget:
     macOS: "14.0"
@@ -9,8 +9,8 @@ options:
   generateEmptyDirectories: false
 
 packages:
-  TandemProtocol:
-    path: ../Shared/TandemProtocol
+  TerasProtocol:
+    path: ../Shared/TerasProtocol
 
 settings:
   base:
@@ -37,7 +37,7 @@ settings:
 
 targets:
 
-  TandemCore:
+  TerasCore:
     type: framework
     platform: macOS
     sources:
@@ -46,12 +46,12 @@ targets:
           - "Main/**"
           - "Display/include/**"
     dependencies:
-      - package: TandemProtocol
-        product: TandemProtocol
+      - package: TerasProtocol
+        product: TerasProtocol
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: app.tandem.mac.core
-        PRODUCT_NAME: TandemCore
+        PRODUCT_BUNDLE_IDENTIFIER: app.teras.mac.core
+        PRODUCT_NAME: TerasCore
         GENERATE_INFOPLIST_FILE: YES
         DEFINES_MODULE: YES
         SKIP_INSTALL: YES
@@ -62,7 +62,7 @@ targets:
           - "@loader_path/Frameworks"
         INFOPLIST_KEY_NSHumanReadableCopyright: ""
 
-  Tandem:
+  Teras:
     type: application
     platform: macOS
     sources:
@@ -70,16 +70,16 @@ targets:
       - path: Resources
         excludes: ["**/.DS_Store"]
     dependencies:
-      - target: TandemCore
+      - target: TerasCore
         embed: true
         codeSign: true
-      - package: TandemProtocol
-        product: TandemProtocol
+      - package: TerasProtocol
+        product: TerasProtocol
     info:
       path: Support/Info.plist
       properties:
-        CFBundleName: Tandem
-        CFBundleDisplayName: Tandem
+        CFBundleName: Teras
+        CFBundleDisplayName: Teras
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleExecutable: $(EXECUTABLE_NAME)
@@ -91,17 +91,17 @@ targets:
         NSHighResolutionCapable: true
         NSSupportsAutomaticTermination: false
         NSSupportsSuddenTermination: false
-        NSHumanReadableCopyright: "Copyright © 2026 Tandem. All rights reserved."
+        NSHumanReadableCopyright: "Copyright © 2026 Teras. All rights reserved."
         CFBundleLocalizations: [en, ko]
         CFBundleDevelopmentRegion: en
-        NSLocalNetworkUsageDescription: "Tandem finds your iPhone, iPad and Android devices on this Wi-Fi network so they can be used as extra displays."
-        NSBonjourServices: ["_tandem._tcp"]
-        NSAccessibilityUsageDescription: "Tandem needs Accessibility access to turn taps, scrolls and key presses on your device into mouse and keyboard input on this Mac."
-        NSCameraUsageDescription: "Tandem does not use the camera."
-        NSMicrophoneUsageDescription: "Tandem does not use the microphone."
-        TandemScreenRecordingUsageDescription: "Tandem records the contents of the virtual display it creates so it can send the picture to your device. It never records your other screens."
+        NSLocalNetworkUsageDescription: "Teras finds your iPhone, iPad and Android devices on this Wi-Fi network so they can be used as extra displays."
+        NSBonjourServices: ["_teras._tcp"]
+        NSAccessibilityUsageDescription: "Teras needs Accessibility access to turn taps, scrolls and key presses on your device into mouse and keyboard input on this Mac."
+        NSCameraUsageDescription: "Teras does not use the camera."
+        NSMicrophoneUsageDescription: "Teras does not use the microphone."
+        TerasScreenRecordingUsageDescription: "Teras records the contents of the virtual display it creates so it can send the picture to your device. It never records your other screens."
     entitlements:
-      path: Support/Tandem.entitlements
+      path: Support/Teras.entitlements
       properties:
         com.apple.security.app-sandbox: false
         com.apple.security.cs.allow-jit: true
@@ -112,26 +112,26 @@ targets:
         com.apple.security.network.server: true
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: app.tandem.mac
-        PRODUCT_NAME: Tandem
+        PRODUCT_BUNDLE_IDENTIFIER: app.teras.mac
+        PRODUCT_NAME: Teras
         ENABLE_HARDENED_RUNTIME: YES
         COMBINE_HIDPI_IMAGES: YES
         LD_RUNPATH_SEARCH_PATHS:
           - $(inherited)
           - "@executable_path/../Frameworks"
 
-  TandemTests:
+  TerasTests:
     type: bundle.unit-test
     platform: macOS
     sources:
       - path: Tests
     dependencies:
-      - target: TandemCore
-      - package: TandemProtocol
-        product: TandemProtocol
+      - target: TerasCore
+      - package: TerasProtocol
+        product: TerasProtocol
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: app.tandem.mac.tests
+        PRODUCT_BUNDLE_IDENTIFIER: app.teras.mac.tests
         GENERATE_INFOPLIST_FILE: YES
         LD_RUNPATH_SEARCH_PATHS:
           - $(inherited)
@@ -139,18 +139,18 @@ targets:
           - "@loader_path/../Frameworks"
 
 schemes:
-  Tandem:
+  Teras:
     build:
       targets:
-        TandemCore: all
-        Tandem: all
-        TandemTests: [test]
+        TerasCore: all
+        Teras: all
+        TerasTests: [test]
     run:
       config: Debug
     test:
       config: Debug
       gatherCoverageData: false
       targets:
-        - TandemTests
+        - TerasTests
     archive:
       config: Release

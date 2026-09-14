@@ -1,12 +1,12 @@
-# Tandem — product & engineering plan
+# Teras — product & engineering plan
 
-Working title **Tandem** (rename before launch; check trademarks). One Mac
+Working title **Teras** (rename before launch; check trademarks). One Mac
 host app turns iPhones, iPads and Android phones/tablets into real extended
 displays over **USB (primary)** and **WiFi (secondary)**.
 
 ## 1. Positioning
 
-| | Tandem | Sidecar | Duet | Side Screen | OpenDisplay | BetterCast |
+| | Teras | Sidecar | Duet | Side Screen | OpenDisplay | BetterCast |
 |---|---|---|---|---|---|---|
 | Android USB | ✅ | ✗ | ✅ (sub) | ✅ | ✗ | ✅ (ADB) |
 | iPhone/iPad USB | ✅ | iPad only | ✅ (sub) | ✗ | ✅ | ✗ |
@@ -36,10 +36,10 @@ onboarding (permissions, adb, trust prompts), Korean/English/Japanese UI.
 ## 3. Architecture
 
 ```
-tandem/
+teras/
   docs/PROTOCOL.md          wire contract (pv 1)
-  Shared/TandemProtocol/    SwiftPM library: framing, messages, crypto, FrameCodec (macOS + iOS)
-  MacHost/                  xcodegen project → Tandem.app (macOS 14+, LSUIElement menu bar app)
+  Shared/TerasProtocol/    SwiftPM library: framing, messages, crypto, FrameCodec (macOS + iOS)
+  MacHost/                  xcodegen project → Teras.app (macOS 14+, LSUIElement menu bar app)
     Sources/App             SwiftUI MenuBarExtra, Settings, Onboarding, Pairing sheet
     Sources/Display         CGVirtualDisplay bridge (MIT, SideScreen)
     Sources/Capture         ScreenCaptureKit capturer
@@ -49,8 +49,8 @@ tandem/
     Sources/Session         DisplaySession (VD+capture+encode+conn), SessionManager (multi)
     Sources/Licensing       Ed25519 license keys, 7‑day trial, Keychain
     Resources/              adb binary, icons, Localizable (en/ko/ja)
-  Receivers/iOS/            xcodegen → Tandem.app (iOS 16+), NWListener 41777 + Bonjour, AVSampleBufferDisplayLayer, touch/pencil/keyboard
-  Receivers/Android/        Gradle → Tandem (minSdk 26), ServerSocket 41777 + NsdManager, MediaCodec→SurfaceView, touch/stylus/keyboard
+  Receivers/iOS/            xcodegen → Teras.app (iOS 16+), NWListener 41777 + Bonjour, AVSampleBufferDisplayLayer, touch/pencil/keyboard
+  Receivers/Android/        Gradle → Teras (minSdk 26), ServerSocket 41777 + NsdManager, MediaCodec→SurfaceView, touch/stylus/keyboard
   scripts/                  build_mac.sh (archive, Developer ID sign, notarize, DMG, appcast)
 ```
 
@@ -60,12 +60,12 @@ Key runtime rules
   encoder, own connection. Sessions are independent; a device unplug tears
   down only its session.
 * Host keeps a physical display as main whenever one exists (SideScreen #39).
-* USB Android: Tandem ships `adb`, runs its own server on a private port
+* USB Android: Teras ships `adb`, runs its own server on a private port
   (`adb -P 5137`) to not fight Android Studio, watches `track-devices`.
 * USB iOS: `UsbmuxClient` speaks the plist protocol on `/var/run/usbmuxd`
   (`Listen` for attach/detach, `Connect` to 41777). Device name via lockdown
   `GetValue DeviceName` (no pairing session needed).
-* WiFi: `NWBrowser(_tandem._tcp)` with `includePeerToPeer = true` (AWDL for
+* WiFi: `NWBrowser(_teras._tcp)` with `includePeerToPeer = true` (AWDL for
   Apple receivers), PIN pairing, AES‑GCM envelope.
 
 ## 4. Milestones
@@ -74,6 +74,7 @@ Key runtime rules
 |---|-----------|--------------------|
 | M1 | **Wired MVP** | Mac host + iOS + Android receivers build; iPhone over USB and Android over USB show an extended display with touch; HEVC 60 fps; reconnect on replug. |
 | M2 | **WiFi** | Bonjour discovery, PIN pairing, encrypted stream, paired‑device list, AWDL for iOS. |
+| M3a | **Teras Control** | Universal‑Control‑style mouse/keyboard/clipboard from the Mac to Android: cursor crosses the edge of the virtual display (or a hotkey) and the Mac captures HID events via a CGEvent tap and forwards them to a shell‑UID input server on the phone (scrcpy‑style `app_process` server injecting `InputEvent`s over the existing adb channel). Android only (iOS has no injection API). |
 | M3 | **Product polish** | Onboarding (Screen Recording, Accessibility, adb/USB debugging, Trust prompt), settings (quality, fps, HiDPI, rotation, mirror), multi‑device, headless/login item, Sparkle updates, ko/en/ja. |
 | M4 | **Commerce** | License keys (Ed25519, offline), 7‑day trial, purchase via Lemon Squeezy/Paddle, website, notarized DMG, App Store (iOS) & Play (Android) receivers. |
 | M5 | **Beta → 1.0** | TestFlight/closed testing, crash‑free 99.5 %, latency budget: USB < 20 ms glass‑to‑glass on M‑series, WiFi < 40 ms on 5 GHz. |

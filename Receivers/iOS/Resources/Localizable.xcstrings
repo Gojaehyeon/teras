@@ -75,13 +75,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plug in a USB cable and open Tandem on your Mac."
+            "value": "Plug in a USB cable and open Teras on your Mac."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "USB 케이블을 연결하고 Mac에서 Tandem을 여세요."
+            "value": "USB 케이블을 연결하고 Mac에서 Teras을 여세요."
           }
         }
       }

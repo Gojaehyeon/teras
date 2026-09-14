@@ -28,7 +28,7 @@ enum AdbError: LocalizedError {
 
 /// Android-over-USB transport.
 ///
-/// Tandem runs its own adb server on a private port so it never fights Android
+/// Teras runs its own adb server on a private port so it never fights Android
 /// Studio's server for device ownership, and shuts that server down on quit.
 final class AdbBridge: @unchecked Sendable {
     /// Private adb server port; Android Studio uses the default 5037.
@@ -267,7 +267,7 @@ final class AdbBridge: @unchecked Sendable {
         // Read both pipes on background queues so a chatty command cannot fill
         // a pipe buffer and deadlock against waitUntilExit.
         let collector = OutputCollector()
-        let readQueue = DispatchQueue(label: "app.tandem.adb.read", attributes: .concurrent)
+        let readQueue = DispatchQueue(label: "app.teras.adb.read", attributes: .concurrent)
         readQueue.async { collector.appendOutput(outputPipe.fileHandleForReading.readDataToEndOfFile()) }
         readQueue.async { collector.appendError(errorPipe.fileHandleForReading.readDataToEndOfFile()) }
 

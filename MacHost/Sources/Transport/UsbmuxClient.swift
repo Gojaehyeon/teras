@@ -8,7 +8,7 @@ import Network
 /// session layer rather than being torn down.
 final class UsbmuxSocket {
     private let connection: NWConnection
-    private let queue = DispatchQueue(label: "app.tandem.usbmux", qos: .userInitiated)
+    private let queue = DispatchQueue(label: "app.teras.usbmux", qos: .userInitiated)
     private var buffer = Data()
     private var nextTag: UInt32 = 1
     private var opened = false

@@ -1,11 +1,11 @@
 import Foundation
 import Security
 
-/// Thin wrapper over the iOS keychain for the few small secrets Tandem keeps.
+/// Thin wrapper over the iOS keychain for the few small secrets Teras keeps.
 /// Every call reports failure instead of trapping: a locked or unavailable
 /// keychain must degrade, never crash the receiver.
 enum Keychain {
-    static let service = "app.tandem.receiver.ios"
+    static let service = "app.teras.receiver.ios"
 
     static func read(account: String) -> Data? {
         var query: [String: Any] = [

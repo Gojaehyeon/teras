@@ -1,6 +1,6 @@
-name: Tandem
+name: Teras
 options:
-  bundleIdPrefix: app.tandem
+  bundleIdPrefix: app.teras
   deploymentTarget:
     iOS: "16.0"
   createIntermediateGroups: true
@@ -22,11 +22,11 @@ settings:
     CODE_SIGN_IDENTITY[sdk=iphonesimulator*]: ""
 
 packages:
-  TandemProtocol:
-    path: ../../Shared/TandemProtocol
+  TerasProtocol:
+    path: ../../Shared/TerasProtocol
 
 targets:
-  TandemReceiver:
+  TerasReceiver:
     type: application
     platform: iOS
     deploymentTarget: "16.0"
@@ -35,12 +35,12 @@ targets:
       - path: Resources
         buildPhase: resources
     dependencies:
-      - package: TandemProtocol
-        product: TandemProtocol
+      - package: TerasProtocol
+        product: TerasProtocol
     settings:
       base:
-        PRODUCT_NAME: TandemReceiver
-        PRODUCT_BUNDLE_IDENTIFIER: app.tandem.receiver.ios
+        PRODUCT_NAME: TerasReceiver
+        PRODUCT_BUNDLE_IDENTIFIER: app.teras.receiver.ios
         INFOPLIST_FILE: Info.plist
         GENERATE_INFOPLIST_FILE: NO
         TARGETED_DEVICE_FAMILY: "1,2"
@@ -52,36 +52,36 @@ targets:
         SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
         SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: NO
 
-  TandemReceiverTests:
+  TerasReceiverTests:
     type: bundle.unit-test
     platform: iOS
     deploymentTarget: "16.0"
     sources:
       - path: Tests
     dependencies:
-      - target: TandemReceiver
-      - package: TandemProtocol
-        product: TandemProtocol
+      - target: TerasReceiver
+      - package: TerasProtocol
+        product: TerasProtocol
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: app.tandem.receiver.ios.tests
+        PRODUCT_BUNDLE_IDENTIFIER: app.teras.receiver.ios.tests
         GENERATE_INFOPLIST_FILE: YES
-        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/TandemReceiver.app/TandemReceiver"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/TerasReceiver.app/TerasReceiver"
         BUNDLE_LOADER: "$(TEST_HOST)"
 
 schemes:
-  TandemReceiver:
+  TerasReceiver:
     build:
       targets:
-        TandemReceiver: all
-        TandemReceiverTests: [test]
+        TerasReceiver: all
+        TerasReceiverTests: [test]
     run:
       config: Debug
     test:
       config: Debug
       gatherCoverageData: false
       targets:
-        - TandemReceiverTests
+        - TerasReceiverTests
     profile:
       config: Release
     analyze:

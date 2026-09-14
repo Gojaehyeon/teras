@@ -1,7 +1,7 @@
 import AppKit
 import CoreGraphics
 import Foundation
-import TandemProtocol
+import TerasProtocol
 import CGVirtualDisplayBridge
 
 //
@@ -47,8 +47,8 @@ protocol VirtualDisplayHosting: AnyObject {
 /// under that device and restores it the next time the same phone connects.
 @MainActor
 final class VirtualDisplay: VirtualDisplayHosting {
-    /// "TanDem" — our vendor id in the EDID macOS synthesises.
-    static let vendorID: UInt32 = 0x54AD
+    /// "TErAS" — our vendor id in the EDID macOS synthesises.
+    static let vendorID: UInt32 = 0x7E5A
 
     private let deviceId: String
     private var display: CGVirtualDisplay?
@@ -282,7 +282,7 @@ final class VirtualDisplay: VirtualDisplayHosting {
     }
 
     /// Online displays that are not ours. Filtered by vendor id so a stale
-    /// Tandem display from a previous run is never mistaken for a real screen.
+    /// Teras display from a previous run is never mistaken for a real screen.
     private func onlinePhysicalDisplays() -> [CGDirectDisplayID] {
         var ids = [CGDirectDisplayID](repeating: 0, count: 32)
         var count: UInt32 = 0

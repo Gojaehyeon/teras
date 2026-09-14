@@ -1,6 +1,6 @@
 import XCTest
 import CoreGraphics
-@testable import TandemReceiver
+@testable import TerasReceiver
 
 final class VideoGeometryTests: XCTestCase {
 

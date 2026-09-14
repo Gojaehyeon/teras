@@ -14,7 +14,7 @@ protocol SecretStore: AnyObject {
 /// A secret is 32 bytes agreed during PAIR and is what proves this Mac to the
 /// device on every later connection, so it never goes in user defaults.
 final class PairingStore: SecretStore, @unchecked Sendable {
-    static let service = "app.tandem.pairing"
+    static let service = "app.teras.pairing"
 
     private let service: String
 

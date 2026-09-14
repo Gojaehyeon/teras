@@ -1,6 +1,6 @@
 import CoreGraphics
 import Foundation
-import TandemProtocol
+import TerasProtocol
 
 /// Where input events go. A protocol so sessions can be driven in tests with
 /// no Accessibility permission and no synthetic events.
@@ -91,7 +91,7 @@ enum SessionError: LocalizedError {
 /// pairing and authentication, stream configuration, video out and input in.
 @MainActor
 final class DisplaySession {
-    let endpoint: TandemEndpoint
+    let endpoint: TerasEndpoint
 
     private let channel: PeerChannel
     private let dependencies: SessionDependencies
@@ -131,11 +131,11 @@ final class DisplaySession {
     private var settingsKey: String { endpoint.id }
     private var finished = false
 
-    init(endpoint: TandemEndpoint,
+    init(endpoint: TerasEndpoint,
          channel: PeerChannel,
          transport: Transport,
          dependencies: SessionDependencies,
-         hostNonce: Data = TandemCrypto.randomBytes(16)) {
+         hostNonce: Data = TerasCrypto.randomBytes(16)) {
         self.endpoint = endpoint
         self.channel = channel
         self.transport = transport
@@ -168,9 +168,9 @@ final class DisplaySession {
     /// Answer a `PAIR_REQUIRED` with the code shown on the device.
     func providePIN(_ pin: String) {
         guard case .awaitingPIN = state, let ack = helloAck else { return }
-        let key = TandemCrypto.pinKey(pin: pin, deviceId: ack.deviceId, hostId: dependencies.hostId)
+        let key = TerasCrypto.pinKey(pin: pin, deviceId: ack.deviceId, hostId: dependencies.hostId)
         pinKey = key
-        let proof = TandemCrypto.pairProof(pinKey: key, hostNonce: hostNonce, deviceNonce: ack.deviceNonce)
+        let proof = TerasCrypto.pairProof(pinKey: key, hostNonce: hostNonce, deviceNonce: ack.deviceNonce)
         do {
             channel.send(try Frame.json(.pair, PairMessage(proof: proof)))
             state = .pairing
@@ -269,7 +269,7 @@ final class DisplaySession {
             throw SessionError.missingSecret
         } else {
             // Wait for PAIR_REQUIRED, which carries the attempt budget.
-            state = .awaitingPIN(attemptsLeft: Tandem.pairMaxAttempts)
+            state = .awaitingPIN(attemptsLeft: Teras.pairMaxAttempts)
         }
     }
 
@@ -284,7 +284,7 @@ final class DisplaySession {
             throw SessionError.protocolViolation("PAIR_OK before PAIR")
         }
         let payload = try frame.decode(PairOK.self)
-        let recovered = try TandemCrypto.openPairBox(payload.box,
+        let recovered = try TerasCrypto.openPairBox(payload.box,
                                                      pinKey: pinKey,
                                                      hostNonce: hostNonce,
                                                      deviceNonce: ack.deviceNonce)
@@ -307,7 +307,7 @@ final class DisplaySession {
 
     private func sendAuth() throws {
         guard let ack = helloAck, let secret else { throw SessionError.missingSecret }
-        let proof = TandemCrypto.authProof(secret: secret, hostNonce: hostNonce, deviceNonce: ack.deviceNonce)
+        let proof = TerasCrypto.authProof(secret: secret, hostNonce: hostNonce, deviceNonce: ack.deviceNonce)
         channel.send(try Frame.json(.auth, AuthMessage(proof: proof)))
         state = .authenticating
     }
@@ -317,8 +317,8 @@ final class DisplaySession {
             throw SessionError.protocolViolation("AUTH_OK before AUTH")
         }
         let payload = try frame.decode(AuthOK.self)
-        let expected = TandemCrypto.authAckProof(secret: secret, hostNonce: hostNonce, deviceNonce: ack.deviceNonce)
-        guard TandemCrypto.constantTimeEquals(payload.proof, expected) else {
+        let expected = TerasCrypto.authAckProof(secret: secret, hostNonce: hostNonce, deviceNonce: ack.deviceNonce)
+        guard TerasCrypto.constantTimeEquals(payload.proof, expected) else {
             // The device could not prove it holds the same secret, so it is not
             // the device we paired with. Keep our secret and stop here.
             throw SessionError.authenticationFailed(
@@ -326,7 +326,7 @@ final class DisplaySession {
         }
 
         if transport == .lan, dependencies.encryptOnLAN {
-            let keys = TandemCrypto.sessionKeys(secret: secret, hostNonce: hostNonce, deviceNonce: ack.deviceNonce)
+            let keys = TerasCrypto.sessionKeys(secret: secret, hostNonce: hostNonce, deviceNonce: ack.deviceNonce)
             channel.enableEncryption(h2r: keys.h2r, r2h: keys.r2h)
         }
         try configureStream()
@@ -392,7 +392,7 @@ final class DisplaySession {
     }
 
     private func displayName(for ack: HelloAck) -> String {
-        ack.deviceName.isEmpty ? "Tandem Display" : ack.deviceName
+        ack.deviceName.isEmpty ? "Teras Display" : ack.deviceName
     }
 
     private func handleReady() {

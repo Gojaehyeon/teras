@@ -1,5 +1,5 @@
 import SwiftUI
-import TandemProtocol
+import TerasProtocol
 
 struct IdleView: View {
     @EnvironmentObject private var model: AppModel
@@ -38,7 +38,7 @@ struct IdleView: View {
 
                 Spacer()
 
-                Text(L.f("idle.port", Int(Tandem.port)))
+                Text(L.f("idle.port", Int(Teras.port)))
                     .font(.caption2.monospaced())
                     .foregroundStyle(.white.opacity(0.25))
                     .padding(.bottom, 24)

@@ -1,7 +1,7 @@
 import CoreGraphics
 import CoreVideo
 import Foundation
-import TandemProtocol
+import TerasProtocol
 
 /// Capture plus encode for one display. A protocol so the session's state
 /// machine can be exercised without ScreenCaptureKit or VideoToolbox.
@@ -30,7 +30,7 @@ protocol VideoPipeline: AnyObject {
 final class CaptureEncodePipeline: VideoPipeline {
     private var capturer: ScreenCapturer?
     private var encoder: VideoEncoder?
-    private let encodeQueue = DispatchQueue(label: "app.tandem.encode", qos: .userInteractive)
+    private let encodeQueue = DispatchQueue(label: "app.teras.encode", qos: .userInteractive)
     private let inFlight = InFlightCounter()
 
     private(set) var captureMethod: String = "ScreenCaptureKit"

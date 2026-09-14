@@ -6,7 +6,7 @@ import Foundation
 import IOKit.pwr_mgt
 import IOSurface
 @preconcurrency import ScreenCaptureKit
-import TandemProtocol
+import TerasProtocol
 import os
 
 //
@@ -68,7 +68,7 @@ final class ScreenCapturer {
     var onFatalError: ((Error) -> Void)?
 
     private let frameState = OSAllocatedUnfairLock(initialState: FrameState())
-    private let captureQueue = DispatchQueue(label: "app.tandem.capture", qos: .userInteractive)
+    private let captureQueue = DispatchQueue(label: "app.teras.capture", qos: .userInteractive)
 
     private var stream: SCStream?
     private var streamOutput: StreamOutput?
@@ -463,7 +463,7 @@ final class ScreenCapturer {
         let result = IOPMAssertionCreateWithName(
             kIOPMAssertionTypePreventUserIdleDisplaySleep as CFString,
             IOPMAssertionLevel(kIOPMAssertionLevelOn),
-            "Tandem is streaming to an external display" as CFString,
+            "Teras is streaming to an external display" as CFString,
             &assertionID)
         guard result == kIOReturnSuccess else {
             Log.debug(.capture, "Could not hold a display-sleep assertion (IOReturn \(result))")

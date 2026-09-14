@@ -1,5 +1,5 @@
 import Foundation
-import TandemProtocol
+import TerasProtocol
 
 /// The connection as the session state machine sees it. Keeping this a
 /// protocol lets the state machine be tested without a socket.

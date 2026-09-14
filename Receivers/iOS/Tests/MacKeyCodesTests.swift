@@ -1,6 +1,6 @@
 import XCTest
 import UIKit
-@testable import TandemReceiver
+@testable import TerasReceiver
 
 final class MacKeyCodesTests: XCTestCase {
 

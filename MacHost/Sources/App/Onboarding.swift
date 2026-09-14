@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// First-run walkthrough: the three permissions Tandem needs and the Android
+/// First-run walkthrough: the three permissions Teras needs and the Android
 /// setup that has no permission prompt of its own.
 struct OnboardingView: View {
     @EnvironmentObject private var model: AppModel

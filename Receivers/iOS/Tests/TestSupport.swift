@@ -1,7 +1,7 @@
 import Foundation
 import XCTest
-import TandemProtocol
-@testable import TandemReceiver
+import TerasProtocol
+@testable import TerasReceiver
 
 extension Data {
     init?(hexString: String) {
@@ -35,9 +35,9 @@ enum Vectors {
     static let pairProof = Data(hexString: "110062869395c85646afbcf6e8de85c902b69c610c2d469d7fa471763d59d690")!
     static let authProof = Data(hexString: "d68dfc86e14f407a12db80aa5d552db1c3085d01aa2964a0cfa6dcb6c788f76f")!
     static let authAckProof = Data(hexString: "a72b55ef64bc87c44e8a798addb5ba7600e9491d8275c47166fd47fddaf28bce")!
-    static let pairBox = Data(hexString: "c90c53edfb1a4127670fe4f4251631623bf295b96611fcc312263d578adb638f39d25d6dc150588a33b15bf4b7171304")!
-    static let keyH2R = Data(hexString: "91fbd9ebfbf64bd6d184081001ec015052beb69813a66c16df6880d7723f2cd6")!
-    static let keyR2H = Data(hexString: "42c14ebc49d6125a587031486fc377723ccb7869b44fa63950e53867ef15782c")!
+    static let pairBox = Data(hexString: "bdfc8dab9bb85daa7ce0e5d24f9c9bc5f9b2196e81fb06c488aa19e226033eb4e46a8cf8ffdf2709115fb9e0361ec2c8")!
+    static let keyH2R = Data(hexString: "2be1636a55b023d61f070f8d225e48be67fccf9721773695b73c5410b4d9cd26")!
+    static let keyR2H = Data(hexString: "65aaf0ab94238a685aa8aa78efddaf2272ba0257782653cfacd1366749283e90")!
 }
 
 /// A `FrameChannel` that records everything instead of touching a socket.
@@ -120,7 +120,7 @@ enum Fixtures {
                           transport: transport,
                           hostNonce: hostNonce,
                           encrypt: encrypt,
-                          app: AppInfo(name: "Tandem", version: "1.0.0", build: 1))
+                          app: AppInfo(name: "Teras", version: "1.0.0", build: 1))
         return try! Frame.json(.hello, hello)
     }
 

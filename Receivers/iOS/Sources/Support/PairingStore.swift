@@ -17,7 +17,7 @@ protocol PairingStoring: AnyObject {
 }
 
 final class KeychainPairingStore: PairingStoring {
-    private let defaultsKey = "app.tandem.receiver.pairedHosts"
+    private let defaultsKey = "app.teras.receiver.pairedHosts"
     private let lock = NSLock()
 
     init() {}

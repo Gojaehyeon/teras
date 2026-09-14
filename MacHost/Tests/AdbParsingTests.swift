@@ -1,5 +1,5 @@
 import XCTest
-@testable import TandemCore
+@testable import TerasCore
 
 final class AdbParsingTests: XCTestCase {
 

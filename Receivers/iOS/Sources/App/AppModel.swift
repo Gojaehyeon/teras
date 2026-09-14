@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import UIKit
 import SwiftUI
-import TandemProtocol
+import TerasProtocol
 
 /// Glue between the networking stack (private serial queues) and SwiftUI
 /// (main actor). Owns the renderer and the input overlay so both survive view
@@ -26,7 +26,7 @@ final class AppModel: ObservableObject {
     @Published private(set) var streamConfig: StreamConfig?
     @Published private(set) var stats = VideoStatsSnapshot()
     @Published private(set) var lastEndReason: String?
-    @Published private(set) var pairingAttemptsLeft: Int = Tandem.pairMaxAttempts
+    @Published private(set) var pairingAttemptsLeft: Int = Teras.pairMaxAttempts
     @Published var isShowingSettings = false
     @Published var isShowingStatsOverlay = false
 
@@ -114,7 +114,7 @@ final class AppModel: ObservableObject {
         // went away when its PONG timeout expires.
         let application = UIApplication.shared
         var assertion = UIBackgroundTaskIdentifier.invalid
-        assertion = application.beginBackgroundTask(withName: "app.tandem.receiver.bye") {
+        assertion = application.beginBackgroundTask(withName: "app.teras.receiver.bye") {
             guard assertion != .invalid else { return }
             application.endBackgroundTask(assertion)
             assertion = .invalid

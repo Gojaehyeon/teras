@@ -1,5 +1,5 @@
 import Foundation
-import TandemProtocol
+import TerasProtocol
 
 protocol ReceiverSessionDelegate: AnyObject {
     func session(_ session: ReceiverSession, didChangeState state: ReceiverSession.State)
@@ -26,9 +26,9 @@ final class ReceiverSession {
     struct Configuration {
         var descriptorProvider: () -> DeviceDescriptor
         var pairingStore: PairingStoring
-        var pinGenerator: () -> String = { TandemCrypto.generatePIN() }
-        var secretGenerator: () -> Data = { TandemCrypto.randomBytes(32) }
-        var nonceGenerator: () -> Data = { TandemCrypto.randomBytes(16) }
+        var pinGenerator: () -> String = { TerasCrypto.generatePIN() }
+        var secretGenerator: () -> Data = { TerasCrypto.randomBytes(32) }
+        var nonceGenerator: () -> Data = { TerasCrypto.randomBytes(16) }
     }
 
     private(set) var state: State = .waitingForHello {
@@ -50,7 +50,7 @@ final class ReceiverSession {
     private let configuration: Configuration
     private let channel: FrameChannel
     private var pin: String?
-    private var attemptsLeft = Tandem.pairMaxAttempts
+    private var attemptsLeft = Teras.pairMaxAttempts
     private var lastDeviceConfigSent: DeviceConfig?
 
     var hostName: String { hello?.hostName ?? "" }
@@ -154,7 +154,7 @@ final class ReceiverSession {
     private func beginPairing() {
         let code = configuration.pinGenerator()
         pin = code
-        attemptsLeft = Tandem.pairMaxAttempts
+        attemptsLeft = Teras.pairMaxAttempts
         guard let frame = try? Frame.json(.pairRequired, PairRequired(attemptsLeft: attemptsLeft)) else {
             finish(reason: "could not encode PAIR_REQUIRED", sendBye: true)
             return
@@ -175,10 +175,10 @@ final class ReceiverSession {
             return
         }
         let descriptor = configuration.descriptorProvider()
-        let pinKey = TandemCrypto.pinKey(pin: pin, deviceId: descriptor.deviceId, hostId: hello.hostId)
-        let expected = TandemCrypto.pairProof(pinKey: pinKey, hostNonce: hello.hostNonce, deviceNonce: deviceNonce)
+        let pinKey = TerasCrypto.pinKey(pin: pin, deviceId: descriptor.deviceId, hostId: hello.hostId)
+        let expected = TerasCrypto.pairProof(pinKey: pinKey, hostNonce: hello.hostNonce, deviceNonce: deviceNonce)
 
-        guard TandemCrypto.constantTimeEquals(expected, message.proof) else {
+        guard TerasCrypto.constantTimeEquals(expected, message.proof) else {
             attemptsLeft -= 1
             let locked = attemptsLeft <= 0
             if let failFrame = try? Frame.json(.pairFail, PairFail(attemptsLeft: max(attemptsLeft, 0), locked: locked)) {
@@ -200,7 +200,7 @@ final class ReceiverSession {
             finish(reason: "bad secret length", sendBye: true)
             return
         }
-        guard let box = try? TandemCrypto.sealPairBox(secret: fresh, pinKey: pinKey,
+        guard let box = try? TerasCrypto.sealPairBox(secret: fresh, pinKey: pinKey,
                                                       hostNonce: hello.hostNonce, deviceNonce: deviceNonce),
               let okFrame = try? Frame.json(.pairOK, PairOK(box: box)) else {
             finish(reason: "could not seal the pairing box", sendBye: true)
@@ -228,12 +228,12 @@ final class ReceiverSession {
             sendAuthFail("not paired")
             return
         }
-        let expected = TandemCrypto.authProof(secret: secret, hostNonce: hello.hostNonce, deviceNonce: deviceNonce)
-        guard TandemCrypto.constantTimeEquals(expected, message.proof) else {
+        let expected = TerasCrypto.authProof(secret: secret, hostNonce: hello.hostNonce, deviceNonce: deviceNonce)
+        guard TerasCrypto.constantTimeEquals(expected, message.proof) else {
             sendAuthFail("bad proof")
             return
         }
-        let ack = TandemCrypto.authAckProof(secret: secret, hostNonce: hello.hostNonce, deviceNonce: deviceNonce)
+        let ack = TerasCrypto.authAckProof(secret: secret, hostNonce: hello.hostNonce, deviceNonce: deviceNonce)
         guard let okFrame = try? Frame.json(.authOK, AuthOK(proof: ack)) else {
             finish(reason: "could not encode AUTH_OK", sendBye: true)
             return
@@ -241,7 +241,7 @@ final class ReceiverSession {
         channel.send(okFrame)
 
         if hello.encrypt {
-            let keys = TandemCrypto.sessionKeys(secret: secret, hostNonce: hello.hostNonce, deviceNonce: deviceNonce)
+            let keys = TerasCrypto.sessionKeys(secret: secret, hostNonce: hello.hostNonce, deviceNonce: deviceNonce)
             channel.enableEncryption(hostToReceiver: keys.h2r, receiverToHost: keys.r2h)
         }
         configuration.pairingStore.touch(hostId: hello.hostId, hostName: hello.hostName)

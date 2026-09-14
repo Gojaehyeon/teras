@@ -1,6 +1,6 @@
 import SwiftUI
 import UIKit
-import TandemProtocol
+import TerasProtocol
 
 /// Hosts the existing `VideoRendererView` / `InputBridge` instances owned by
 /// `AppModel` so the decoder survives SwiftUI view updates.

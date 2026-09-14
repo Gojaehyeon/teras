@@ -1,7 +1,7 @@
 import Foundation
 import Network
 import QuartzCore
-import TandemProtocol
+import TerasProtocol
 
 protocol PeerConnectionDelegate: AnyObject {
     /// The TCP connection is up; the host will send HELLO next.
@@ -66,7 +66,7 @@ final class PeerConnection {
             case .cancelled:
                 self.finish(reason: "cancelled")
             case .waiting(let error):
-                NSLog("[Tandem] connection waiting: \(error.localizedDescription)")
+                NSLog("[Teras] connection waiting: \(error.localizedDescription)")
             default:
                 break
             }
@@ -241,7 +241,7 @@ final class PeerConnection {
 
     private func startPingTimer() {
         let timer = DispatchSource.makeTimerSource(queue: queue)
-        timer.schedule(deadline: .now() + Tandem.pingInterval, repeating: Tandem.pingInterval)
+        timer.schedule(deadline: .now() + Teras.pingInterval, repeating: Teras.pingInterval)
         timer.setEventHandler { [weak self] in self?.tick() }
         pingTimer = timer
         timer.resume()
@@ -250,8 +250,8 @@ final class PeerConnection {
     private func tick() {
         guard !isClosed, !isClosing else { return }
         let now = CACurrentMediaTime()
-        if awaitingPong, now - lastPongAt > Tandem.pongTimeout {
-            finish(reason: "no PONG within \(Int(Tandem.pongTimeout)) s")
+        if awaitingPong, now - lastPongAt > Teras.pongTimeout {
+            finish(reason: "no PONG within \(Int(Teras.pongTimeout)) s")
             return
         }
         lastPingSentUs = monotonicMicros()

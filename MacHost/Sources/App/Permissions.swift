@@ -4,7 +4,7 @@ import Combine
 import Foundation
 import ServiceManagement
 
-/// Live view of the system permissions Tandem depends on.
+/// Live view of the system permissions Teras depends on.
 ///
 /// macOS gives no notification when the user flips one of these, so the model
 /// re-checks on a timer and whenever the app becomes active.

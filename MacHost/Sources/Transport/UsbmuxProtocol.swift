@@ -76,8 +76,8 @@ enum UsbmuxProtocol {
     static let typePlist: UInt32 = 8
     static let maxMessageSize = 4 * 1024 * 1024
 
-    static let programName = "Tandem"
-    static let clientVersion = "Tandem 1.0"
+    static let programName = "Teras"
+    static let clientVersion = "Teras 1.0"
 
     /// lockdownd's port on the device; used for `GetValue DeviceName`.
     static let lockdownPort: UInt16 = 62078

@@ -1,5 +1,5 @@
 import Foundation
-import TandemProtocol
+import TerasProtocol
 
 /// Everything the host needs to build one virtual display and one encode
 /// session for it. `encoded*` is what goes on the wire (physical pixels);

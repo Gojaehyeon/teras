@@ -1,6 +1,6 @@
 import Foundation
 import Network
-import TandemProtocol
+import TerasProtocol
 
 /// Owns the TCP listener, the Bonjour advertisement and the single live
 /// session. Host connections replace each other: the newest one wins
@@ -26,7 +26,7 @@ final class ReceiverServer {
     /// Delivered on the main queue.
     var onEvent: ((Event) -> Void)?
 
-    private let queue = DispatchQueue(label: "app.tandem.receiver.net", qos: .userInitiated)
+    private let queue = DispatchQueue(label: "app.teras.receiver.net", qos: .userInitiated)
     private let descriptorBox: DeviceDescriptorBox
     private let pairingStore: PairingStoring
     private weak var videoSink: VideoSink?
@@ -119,7 +119,7 @@ final class ReceiverServer {
         let parameters = makeParameters()
         let listener: NWListener
         do {
-            guard let port = NWEndpoint.Port(rawValue: Tandem.port) else {
+            guard let port = NWEndpoint.Port(rawValue: Teras.port) else {
                 emit(.advertisement(.failed("invalid port")))
                 return
             }
@@ -178,11 +178,11 @@ final class ReceiverServer {
     private func makeService(name: String) -> NWListener.Service {
         let descriptor = descriptorBox.current
         var txt = NWTXTRecord()
-        txt["pv"] = String(Tandem.protocolVersion)
+        txt["pv"] = String(Teras.protocolVersion)
         txt["id"] = descriptor.deviceId
         txt["plat"] = "ios"
         txt["name"] = name
-        return NWListener.Service(name: name, type: Tandem.bonjourServiceType, domain: nil, txtRecord: txt)
+        return NWListener.Service(name: name, type: Teras.bonjourServiceType, domain: nil, txtRecord: txt)
     }
 
     private func scheduleRetry() {
@@ -237,7 +237,7 @@ final class ReceiverServer {
     private func startStatsTimer() {
         statsTimer?.cancel()
         let timer = DispatchSource.makeTimerSource(queue: queue)
-        timer.schedule(deadline: .now() + Tandem.statsInterval, repeating: Tandem.statsInterval)
+        timer.schedule(deadline: .now() + Teras.statsInterval, repeating: Teras.statsInterval)
         timer.setEventHandler { [weak self] in self?.session?.sendStats() }
         statsTimer = timer
         timer.resume()

@@ -56,7 +56,7 @@ final class AppModel: ObservableObject {
     }
 
     var menuBarSymbol: String {
-        sessions.activeSessionCount > 0 ? "iphone.and.arrow.forward" : "iphone.landscape"
+        "iphone.landscape"   // same glyph in every state so the menu bar never shifts
     }
 
     // MARK: - Windows

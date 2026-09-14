@@ -1,7 +1,7 @@
 import Foundation
 import os
 
-/// Log categories; each maps to one `os.Logger` under the `app.tandem` subsystem.
+/// Log categories; each maps to one `os.Logger` under the `app.teras` subsystem.
 enum LogCategory: String, CaseIterable, Sendable {
     case app, display, capture, encode, transport, session, input, store
 }
@@ -77,7 +77,7 @@ final class LogRing: @unchecked Sendable {
 
 /// Facade over `os.Logger` that also mirrors into `LogRing`.
 enum Log {
-    static let subsystem = "app.tandem"
+    static let subsystem = "app.teras"
 
     private static let loggers: [LogCategory: Logger] = {
         var map: [LogCategory: Logger] = [:]

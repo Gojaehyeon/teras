@@ -1,5 +1,5 @@
 import XCTest
-@testable import TandemCore
+@testable import TerasCore
 
 final class UsbmuxProtocolTests: XCTestCase {
 
@@ -22,7 +22,7 @@ final class UsbmuxProtocolTests: XCTestCase {
         let body = data.subdata(in: UsbmuxProtocol.headerSize..<data.count)
         let plist = try XCTUnwrap(PropertyListSerialization.propertyList(from: body, options: [], format: nil) as? [String: Any])
         XCTAssertEqual(plist["MessageType"] as? String, "ListDevices")
-        XCTAssertEqual(plist["ProgName"] as? String, "Tandem")
+        XCTAssertEqual(plist["ProgName"] as? String, "Teras")
         XCTAssertNotNil(plist["ClientVersionString"])
     }
 
@@ -157,7 +157,7 @@ final class UsbmuxProtocolTests: XCTestCase {
         let plist = try XCTUnwrap(PropertyListSerialization.propertyList(from: body, options: [], format: nil) as? [String: Any])
         XCTAssertEqual(plist["Request"] as? String, "GetValue")
         XCTAssertEqual(plist["Key"] as? String, "DeviceName")
-        XCTAssertEqual(plist["Label"] as? String, "Tandem")
+        XCTAssertEqual(plist["Label"] as? String, "Teras")
     }
 
     func testLockdownReplyDecoding() throws {

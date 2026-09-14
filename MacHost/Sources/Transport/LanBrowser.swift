@@ -1,6 +1,6 @@
 import Foundation
 import Network
-import TandemProtocol
+import TerasProtocol
 
 /// A receiver advertising itself on the local network.
 struct LanPeer: Hashable, Identifiable, Sendable {
@@ -13,10 +13,10 @@ struct LanPeer: Hashable, Identifiable, Sendable {
     var id: String { deviceId }
 }
 
-/// Browses for `_tandem._tcp`, including peer-to-peer interfaces so Apple
+/// Browses for `_teras._tcp`, including peer-to-peer interfaces so Apple
 /// receivers are found over AWDL when there is no shared Wi-Fi network.
 final class LanBrowser: @unchecked Sendable {
-    private let queue = DispatchQueue(label: "app.tandem.lanbrowser")
+    private let queue = DispatchQueue(label: "app.teras.lanbrowser")
     private var browser: NWBrowser?
     private let lock = NSLock()
     private var latest: [LanPeer] = []
@@ -46,7 +46,7 @@ final class LanBrowser: @unchecked Sendable {
 
         let parameters = NWParameters()
         parameters.includePeerToPeer = true
-        let descriptor = NWBrowser.Descriptor.bonjourWithTXTRecord(type: Tandem.bonjourServiceType, domain: nil)
+        let descriptor = NWBrowser.Descriptor.bonjourWithTXTRecord(type: Teras.bonjourServiceType, domain: nil)
         let browser = NWBrowser(for: descriptor, using: parameters)
 
         browser.stateUpdateHandler = { [weak self] state in
@@ -54,7 +54,7 @@ final class LanBrowser: @unchecked Sendable {
             switch state {
             case .ready:
                 self.setBrowsing(true)
-                Log.info(.transport, "Browsing for \(Tandem.bonjourServiceType)")
+                Log.info(.transport, "Browsing for \(Teras.bonjourServiceType)")
             case .failed(let error):
                 self.setBrowsing(false)
                 Log.error(.transport, "Bonjour browsing failed: \(error.localizedDescription)")
@@ -104,7 +104,7 @@ final class LanBrowser: @unchecked Sendable {
         guard case .bonjour(let txt) = result.metadata else { return nil }
         let serviceName = Self.serviceName(of: result.endpoint)
         guard let deviceId = txt["id"], !deviceId.isEmpty else { return nil }
-        let version = txt["pv"].flatMap(Int.init) ?? Tandem.protocolVersion
+        let version = txt["pv"].flatMap(Int.init) ?? Teras.protocolVersion
         let platform = txt["plat"].flatMap(Platform.init(rawValue:)) ?? .ios
         let name = txt["name"].flatMap { $0.isEmpty ? nil : $0 } ?? serviceName ?? deviceId
         return LanPeer(endpoint: result.endpoint,

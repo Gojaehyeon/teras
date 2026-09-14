@@ -1,7 +1,7 @@
 import XCTest
 import CoreGraphics
-import TandemProtocol
-@testable import TandemReceiver
+import TerasProtocol
+@testable import TerasReceiver
 
 /// The host builds tablet pressure and tilt from these fields, so they must
 /// carry real measurements rather than zeros.

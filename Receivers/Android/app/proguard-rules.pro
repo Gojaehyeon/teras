@@ -1,4 +1,4 @@
-# Tandem receiver keeps no reflection-driven entry points beyond the Android
+# Teras receiver keeps no reflection-driven entry points beyond the Android
 # framework ones AGP already preserves, so the default rules cover the app.
 -dontwarn kotlinx.**
 

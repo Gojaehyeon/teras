@@ -1,6 +1,6 @@
 import Foundation
 import CoreMedia
-import TandemProtocol
+import TerasProtocol
 
 /// Builds `CMVideoFormatDescription` values from Annex-B parameter sets.
 enum VideoFormatFactory {

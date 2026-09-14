@@ -1,6 +1,6 @@
 import XCTest
-import TandemProtocol
-@testable import TandemCore
+import TerasProtocol
+@testable import TerasCore
 
 /// The host side of PROTOCOL §8, driven end to end against a fake receiver.
 @MainActor
@@ -32,18 +32,18 @@ final class HandshakeTests: XCTestCase {
     }
 
     private func makeSession(transport: Transport = .usb,
-                             endpoint: TandemEndpoint? = nil) -> DisplaySession {
+                             endpoint: TerasEndpoint? = nil) -> DisplaySession {
         let dependencies = SessionDependencies(
             hostId: Fixtures.hostId,
             hostName: "Test Mac",
-            appInfo: AppInfo(name: "Tandem", version: "1.0.0", build: 1),
+            appInfo: AppInfo(name: "Teras", version: "1.0.0", build: 1),
             pairingStore: secrets,
             settingsStore: settings,
             makeDisplay: { [display] _ in display! },
             makePipeline: { [pipeline] in pipeline! },
             makeInput: { [input] _ in input! })
 
-        let defaultEndpoint: TandemEndpoint = transport == .usb
+        let defaultEndpoint: TerasEndpoint = transport == .usb
             ? .usbIOS(udid: "UDID-TEST", deviceID: 3, name: "Test iPhone")
             : .lan(peer: LanPeer(endpoint: .hostPort(host: "192.0.2.7", port: 41777),
                                  deviceId: Fixtures.deviceId,
@@ -66,7 +66,7 @@ final class HandshakeTests: XCTestCase {
         session.start()
 
         let hello: Hello = try channel.decodeFirst(.hello)
-        XCTAssertEqual(hello.pv, Tandem.protocolVersion)
+        XCTAssertEqual(hello.pv, Teras.protocolVersion)
         XCTAssertEqual(hello.hostId, Fixtures.hostId)
         XCTAssertEqual(hello.hostName, "Test Mac")
         XCTAssertEqual(hello.transport, .usb)
@@ -158,8 +158,8 @@ final class HandshakeTests: XCTestCase {
                        "matches docs/VECTORS.md pairProof")
 
         // The receiver seals the new secret with the same PIN key.
-        let pinKey = TandemCrypto.pinKey(pin: Fixtures.pin, deviceId: Fixtures.deviceId, hostId: Fixtures.hostId)
-        let box = try TandemCrypto.sealPairBox(secret: Fixtures.secret,
+        let pinKey = TerasCrypto.pinKey(pin: Fixtures.pin, deviceId: Fixtures.deviceId, hostId: Fixtures.hostId)
+        let box = try TerasCrypto.sealPairBox(secret: Fixtures.secret,
                                                pinKey: pinKey,
                                                hostNonce: Fixtures.hostNonce,
                                                deviceNonce: Fixtures.deviceNonce)
@@ -183,7 +183,7 @@ final class HandshakeTests: XCTestCase {
         try channel.deliver(.helloAck, Fixtures.helloAck(authRequired: true, paired: true))
         XCTAssertEqual(session.state, .authenticating, "a known device skips pairing")
 
-        let ackProof = TandemCrypto.authAckProof(secret: Fixtures.secret,
+        let ackProof = TerasCrypto.authAckProof(secret: Fixtures.secret,
                                                  hostNonce: Fixtures.hostNonce,
                                                  deviceNonce: Fixtures.deviceNonce)
         XCTAssertEqual(ackProof.hexString,
@@ -192,8 +192,8 @@ final class HandshakeTests: XCTestCase {
         try channel.deliver(.authOK, AuthOK(proof: ackProof))
 
         let keys = try XCTUnwrap(channel.encryptionKeys)
-        XCTAssertEqual(keys.h2r.hexString, "91fbd9ebfbf64bd6d184081001ec015052beb69813a66c16df6880d7723f2cd6")
-        XCTAssertEqual(keys.r2h.hexString, "42c14ebc49d6125a587031486fc377723ccb7869b44fa63950e53867ef15782c")
+        XCTAssertEqual(keys.h2r.hexString, "2be1636a55b023d61f070f8d225e48be67fccf9721773695b73c5410b4d9cd26")
+        XCTAssertEqual(keys.r2h.hexString, "65aaf0ab94238a685aa8aa78efddaf2272ba0257782653cfacd1366749283e90")
         XCTAssertEqual(session.state, .configuring)
         XCTAssertNotNil(channel.firstFrame(.streamConfig))
     }

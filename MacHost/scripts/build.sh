@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Generate Tandem.xcodeproj and build it into ./build.
+# Generate Teras.xcodeproj and build it into ./build.
 #
 # Usage: scripts/build.sh [Debug|Release] [build|test|clean]
 set -euo pipefail
@@ -26,18 +26,18 @@ fi
 
 case "$ACTION" in
   clean)
-    xcodebuild -project Tandem.xcodeproj -scheme Tandem -configuration "$CONFIG" \
+    xcodebuild -project Teras.xcodeproj -scheme Teras -configuration "$CONFIG" \
       -derivedDataPath "$DERIVED" clean
     ;;
   test)
-    xcodebuild -project Tandem.xcodeproj -scheme Tandem -configuration "$CONFIG" \
+    xcodebuild -project Teras.xcodeproj -scheme Teras -configuration "$CONFIG" \
       -derivedDataPath "$DERIVED" -destination 'platform=macOS' \
       "${SIGN_ARGS[@]}" test
     ;;
   build)
-    xcodebuild -project Tandem.xcodeproj -scheme Tandem -configuration "$CONFIG" \
+    xcodebuild -project Teras.xcodeproj -scheme Teras -configuration "$CONFIG" \
       -derivedDataPath "$DERIVED" "${SIGN_ARGS[@]}" build
-    echo "==> built: $DERIVED/Build/Products/$CONFIG/Tandem.app"
+    echo "==> built: $DERIVED/Build/Products/$CONFIG/Teras.app"
     ;;
   *)
     echo "unknown action: $ACTION (build|test|clean)" >&2

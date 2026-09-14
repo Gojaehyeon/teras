@@ -1,6 +1,6 @@
 import XCTest
-import TandemProtocol
-@testable import TandemCore
+import TerasProtocol
+@testable import TerasCore
 
 final class DisplayGeometryTests: XCTestCase {
 

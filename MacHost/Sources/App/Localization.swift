@@ -2,7 +2,7 @@ import Foundation
 
 /// Look up a localized string from the app bundle.
 ///
-/// The UI lives in the TandemCore framework but the string catalogs ship in the
+/// The UI lives in the TerasCore framework but the string catalogs ship in the
 /// app, so every lookup is explicitly against `Bundle.main`.
 func L(_ key: String) -> String {
     NSLocalizedString(key, bundle: .main, comment: "")

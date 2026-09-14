@@ -1,6 +1,6 @@
 import Foundation
 import Network
-import TandemProtocol
+import TerasProtocol
 
 /// The frame-level conversation with one receiver.
 ///
@@ -32,7 +32,7 @@ enum PeerConnectionError: LocalizedError {
         switch self {
         case .framing(let detail): return "The device sent something we could not read: \(detail)."
         case .transport(let detail): return "The connection failed: \(detail)."
-        case .pongTimeout: return "The device stopped answering (no PONG within \(Int(Tandem.pongTimeout))s)."
+        case .pongTimeout: return "The device stopped answering (no PONG within \(Int(Teras.pongTimeout))s)."
         case .closedByPeer(let reason): return reason.isEmpty ? "The device closed the session." : reason
         }
     }
@@ -41,8 +41,8 @@ enum PeerConnectionError: LocalizedError {
 /// `PeerChannel` over a Network.framework connection.
 final class PeerConnection: PeerChannel, @unchecked Sendable {
     private let connection: NWConnection
-    private let queue = DispatchQueue(label: "app.tandem.peer", qos: .userInitiated)
-    private let sendQueue = DispatchQueue(label: "app.tandem.peer.send", qos: .userInteractive)
+    private let queue = DispatchQueue(label: "app.teras.peer", qos: .userInitiated)
+    private let sendQueue = DispatchQueue(label: "app.teras.peer.send", qos: .userInteractive)
 
     private let stateLock = NSLock()
     private var parser = FrameParser()
@@ -248,7 +248,7 @@ final class PeerConnection: PeerChannel, @unchecked Sendable {
 
     private func startLivenessTimer() {
         let timer = DispatchSource.makeTimerSource(queue: queue)
-        timer.schedule(deadline: .now() + Tandem.pingInterval, repeating: Tandem.pingInterval)
+        timer.schedule(deadline: .now() + Teras.pingInterval, repeating: Teras.pingInterval)
         timer.setEventHandler { [weak self] in
             guard let self else { return }
             self.stateLock.lock()
@@ -256,7 +256,7 @@ final class PeerConnection: PeerChannel, @unchecked Sendable {
             let silentFor = Date().timeIntervalSince(self.lastPongAt)
             self.stateLock.unlock()
             guard !closed else { return }
-            if silentFor > Tandem.pongTimeout {
+            if silentFor > Teras.pongTimeout {
                 self.fail(PeerConnectionError.pongTimeout)
                 return
             }

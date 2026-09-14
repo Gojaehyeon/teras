@@ -1,5 +1,5 @@
 import Foundation
-import TandemProtocol
+import TerasProtocol
 
 /// Quality presets offered in the menu bar. USB has bandwidth to spare, so the
 /// presets are generous there; Wi-Fi is capped because anything above ~30 Mbps

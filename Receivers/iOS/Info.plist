@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Tandem</string>
+	<string>Teras</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -28,10 +28,10 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>Tandem uses the local network to let your Mac find this device over Wi-Fi and use it as an extra display.</string>
+	<string>Teras uses the local network to let your Mac find this device over Wi-Fi and use it as an extra display.</string>
 	<key>NSBonjourServices</key>
 	<array>
-		<string>_tandem._tcp</string>
+		<string>_teras._tcp</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

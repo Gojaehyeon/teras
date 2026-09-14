@@ -2,7 +2,7 @@ import AppKit
 import ApplicationServices
 import CoreGraphics
 import Foundation
-import TandemProtocol
+import TerasProtocol
 
 /// Turns receiver input into real macOS events on the virtual display.
 ///

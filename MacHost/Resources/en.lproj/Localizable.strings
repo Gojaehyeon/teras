@@ -1,6 +1,6 @@
-/* Tandem — English */
+/* Teras — English */
 
-"app.name" = "Tandem";
+"app.name" = "Teras";
 
 /* Menu bar */
 "menu.usb" = "USB";
@@ -15,7 +15,7 @@
 "menu.settings" = "Open Settings…";
 "menu.onboarding" = "Setup Guide…";
 "menu.permissionsNeeded" = "Finish setup to start streaming";
-"menu.quit" = "Quit Tandem";
+"menu.quit" = "Quit Teras";
 
 /* Device status */
 "status.idle" = "Not connected";
@@ -41,7 +41,7 @@
 "settings.devices" = "Devices";
 "settings.permissions" = "Permissions";
 "settings.diagnostics" = "Diagnostics";
-"settings.launchAtLogin" = "Open Tandem at login";
+"settings.launchAtLogin" = "Open Teras at login";
 "settings.showStats" = "Show frame rate and latency in the menu";
 "settings.hostName" = "This Mac";
 "settings.hostId" = "Host ID";
@@ -57,7 +57,7 @@
 
 /* Permissions */
 "permission.screenRecording" = "Screen Recording";
-"permission.screenRecordingHelp" = "Tandem records the virtual display it creates so it can send the picture to your device. Your other screens are never captured.";
+"permission.screenRecordingHelp" = "Teras records the virtual display it creates so it can send the picture to your device. Your other screens are never captured.";
 "permission.accessibility" = "Accessibility";
 "permission.accessibilityHelp" = "Lets taps, scrolls and key presses on your device move the pointer and type on this Mac.";
 "permission.localNetwork" = "Local Network";
@@ -81,9 +81,9 @@
 "pairing.done" = "Paired.";
 
 /* Onboarding */
-"onboarding.title" = "Set up Tandem";
-"onboarding.welcomeTitle" = "Welcome to Tandem";
-"onboarding.welcomeBody" = "Tandem turns an iPhone, iPad or Android device into a real extra display for this Mac, over USB or Wi-Fi. Three system permissions make that possible; this guide walks through them.";
+"onboarding.title" = "Set up Teras";
+"onboarding.welcomeTitle" = "Welcome to Teras";
+"onboarding.welcomeBody" = "Teras turns an iPhone, iPad or Android device into a real extra display for this Mac, over USB or Wi-Fi. Three system permissions make that possible; this guide walks through them.";
 "onboarding.networkTitle" = "Wi-Fi discovery";
 "onboarding.networkBody" = "To find devices over Wi-Fi, macOS asks once for permission to look at the local network. Devices on a cable work whatever you choose here.";
 "onboarding.androidTitle" = "Android over USB";
@@ -92,3 +92,5 @@
 "onboarding.back" = "Back";
 "onboarding.next" = "Next";
 "onboarding.finish" = "Done";
+
+"status.needsScreenRecording" = "Allow Screen Recording in System Settings";

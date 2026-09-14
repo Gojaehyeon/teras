@@ -1,5 +1,5 @@
 import Foundation
-import TandemProtocol
+import TerasProtocol
 
 /// The decoder/renderer seen from the session state machine.
 protocol VideoSink: AnyObject {
