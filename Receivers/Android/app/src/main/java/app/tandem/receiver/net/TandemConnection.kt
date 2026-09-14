@@ -157,6 +157,26 @@ class TandemConnection(
 
     override fun send(type: Byte, payload: ByteArray) {
         if (closed.get()) return
+        // Socket writes must never run on the UI thread (NetworkOnMainThread);
+        // the surface-attach path asks for a keyframe from a Choreographer
+        // callback, so hop onto the single writer thread there. Off the main
+        // thread the write stays synchronous so ordering guarantees hold.
+        if (isOnMainThread()) {
+            writerExecutor.execute { writeLocked(type, payload) }
+            return
+        }
+        writeLocked(type, payload)
+    }
+
+    private fun isOnMainThread(): Boolean =
+        runCatching { android.os.Looper.getMainLooper()?.isCurrentThread == true }.getOrDefault(false)
+
+    private val writerExecutor = java.util.concurrent.Executors.newSingleThreadExecutor { r ->
+        Thread(r, "tandem-writer").apply { isDaemon = true }
+    }
+
+    private fun writeLocked(type: Byte, payload: ByteArray) {
+        if (closed.get()) return
         try {
             // The cipher lookup and the write are one critical section: arming
             // must not interleave with an in-flight plaintext write, or the host
@@ -183,6 +203,7 @@ class TandemConnection(
         Log.i(TAG, "closing session with $peerDescription: $reason")
         timers?.shutdownNow()
         timers = null
+        writerExecutor.shutdown()
         try {
             socket.close()
         } catch (_: IOException) {

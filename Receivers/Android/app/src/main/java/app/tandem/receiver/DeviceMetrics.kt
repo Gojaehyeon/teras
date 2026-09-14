@@ -1,6 +1,7 @@
 package app.tandem.receiver
 
 import android.content.Context
+import android.hardware.display.DisplayManager
 import android.os.Build
 import android.util.DisplayMetrics
 import android.view.Display
@@ -24,7 +25,7 @@ object DeviceMetrics {
         val display = displayOf(context, windowManager)
 
         val (widthPx, heightPx) =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && runCatching { windowManager.maximumWindowMetrics }.isSuccess) {
                 val bounds = windowManager.maximumWindowMetrics.bounds
                 bounds.width() to bounds.height()
             } else {
@@ -74,13 +75,18 @@ object DeviceMetrics {
         }
     }
 
-    private fun displayOf(context: Context, windowManager: WindowManager): Display? =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            context.display
-        } else {
-            @Suppress("DEPRECATION")
-            windowManager.defaultDisplay
-        }
+    /**
+     * Resolve the default display without requiring a visual Context. The
+     * receiver builds HELLO_ACK from a socket thread using the application
+     * context, and `Context.display` throws there ("Tried to obtain display
+     * from a Context not associated with one").
+     */
+    private fun displayOf(context: Context, windowManager: WindowManager): Display? {
+        val dm = context.getSystemService(Context.DISPLAY_SERVICE) as? DisplayManager
+        dm?.getDisplay(Display.DEFAULT_DISPLAY)?.let { return it }
+        @Suppress("DEPRECATION")
+        return windowManager.defaultDisplay
+    }
 
     fun model(): String = "${Build.MANUFACTURER} ${Build.MODEL}".trim()
 }
