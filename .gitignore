@@ -1,0 +1,16 @@
+.build/
+build/
+DerivedData/
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+.gradle/
+local.properties
+*.iml
+.idea/
+*.dmg
+*.ipa
+*.aab
+*.apk
+.env
+.omc/
