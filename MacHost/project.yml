@@ -1,0 +1,156 @@
+name: Tandem
+
+options:
+  bundleIdPrefix: app.tandem
+  createIntermediateGroups: true
+  deploymentTarget:
+    macOS: "14.0"
+  groupSortPosition: top
+  generateEmptyDirectories: false
+
+packages:
+  TandemProtocol:
+    path: ../Shared/TandemProtocol
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ${DEVELOPMENT_TEAM}
+    CODE_SIGN_STYLE: Automatic
+    ALWAYS_SEARCH_USER_PATHS: NO
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+    CLANG_ENABLE_MODULES: YES
+    SWIFT_STRICT_CONCURRENCY: minimal
+    SWIFT_INCLUDE_PATHS: $(SRCROOT)/Sources/Display/include
+    GCC_WARN_UNINITIALIZED_AUTOS: YES
+    SWIFT_TREAT_WARNINGS_AS_ERRORS: NO
+  configs:
+    Debug:
+      SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+      SWIFT_OPTIMIZATION_LEVEL: "-Onone"
+      ENABLE_TESTABILITY: YES
+    Release:
+      SWIFT_COMPILATION_MODE: wholemodule
+      SWIFT_OPTIMIZATION_LEVEL: "-O"
+
+targets:
+
+  TandemCore:
+    type: framework
+    platform: macOS
+    sources:
+      - path: Sources
+        excludes:
+          - "Main/**"
+          - "Display/include/**"
+    dependencies:
+      - package: TandemProtocol
+        product: TandemProtocol
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.tandem.mac.core
+        PRODUCT_NAME: TandemCore
+        GENERATE_INFOPLIST_FILE: YES
+        DEFINES_MODULE: YES
+        SKIP_INSTALL: YES
+        DYLIB_INSTALL_NAME_BASE: "@rpath"
+        LD_RUNPATH_SEARCH_PATHS:
+          - $(inherited)
+          - "@executable_path/../Frameworks"
+          - "@loader_path/Frameworks"
+        INFOPLIST_KEY_NSHumanReadableCopyright: ""
+
+  Tandem:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/Main
+      - path: Resources
+        excludes: ["**/.DS_Store"]
+    dependencies:
+      - target: TandemCore
+        embed: true
+        codeSign: true
+      - package: TandemProtocol
+        product: TandemProtocol
+    info:
+      path: Support/Info.plist
+      properties:
+        CFBundleName: Tandem
+        CFBundleDisplayName: Tandem
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleExecutable: $(EXECUTABLE_NAME)
+        CFBundleIdentifier: $(PRODUCT_BUNDLE_IDENTIFIER)
+        CFBundlePackageType: APPL
+        LSMinimumSystemVersion: $(MACOSX_DEPLOYMENT_TARGET)
+        LSUIElement: true
+        LSApplicationCategoryType: public.app-category.utilities
+        NSHighResolutionCapable: true
+        NSSupportsAutomaticTermination: false
+        NSSupportsSuddenTermination: false
+        NSHumanReadableCopyright: "Copyright © 2026 Tandem. All rights reserved."
+        CFBundleLocalizations: [en, ko]
+        CFBundleDevelopmentRegion: en
+        NSLocalNetworkUsageDescription: "Tandem finds your iPhone, iPad and Android devices on this Wi-Fi network so they can be used as extra displays."
+        NSBonjourServices: ["_tandem._tcp"]
+        NSAccessibilityUsageDescription: "Tandem needs Accessibility access to turn taps, scrolls and key presses on your device into mouse and keyboard input on this Mac."
+        NSCameraUsageDescription: "Tandem does not use the camera."
+        NSMicrophoneUsageDescription: "Tandem does not use the microphone."
+        TandemScreenRecordingUsageDescription: "Tandem records the contents of the virtual display it creates so it can send the picture to your device. It never records your other screens."
+    entitlements:
+      path: Support/Tandem.entitlements
+      properties:
+        com.apple.security.app-sandbox: false
+        com.apple.security.cs.allow-jit: true
+        com.apple.security.cs.disable-library-validation: true
+        com.apple.security.cs.allow-dyld-environment-variables: true
+        com.apple.security.device.usb: true
+        com.apple.security.network.client: true
+        com.apple.security.network.server: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.tandem.mac
+        PRODUCT_NAME: Tandem
+        ENABLE_HARDENED_RUNTIME: YES
+        COMBINE_HIDPI_IMAGES: YES
+        LD_RUNPATH_SEARCH_PATHS:
+          - $(inherited)
+          - "@executable_path/../Frameworks"
+
+  TandemTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: Tests
+    dependencies:
+      - target: TandemCore
+      - package: TandemProtocol
+        product: TandemProtocol
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.tandem.mac.tests
+        GENERATE_INFOPLIST_FILE: YES
+        LD_RUNPATH_SEARCH_PATHS:
+          - $(inherited)
+          - "@executable_path/../Frameworks"
+          - "@loader_path/../Frameworks"
+
+schemes:
+  Tandem:
+    build:
+      targets:
+        TandemCore: all
+        Tandem: all
+        TandemTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: false
+      targets:
+        - TandemTests
+    archive:
+      config: Release

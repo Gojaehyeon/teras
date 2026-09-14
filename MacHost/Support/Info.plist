@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Tandem</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>ko</string>
+	</array>
+	<key>CFBundleName</key>
+	<string>Tandem</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSAccessibilityUsageDescription</key>
+	<string>Tandem needs Accessibility access to turn taps, scrolls and key presses on your device into mouse and keyboard input on this Mac.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_tandem._tcp</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Tandem does not use the camera.</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2026 Tandem. All rights reserved.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Tandem finds your iPhone, iPad and Android devices on this Wi-Fi network so they can be used as extra displays.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Tandem does not use the microphone.</string>
+	<key>NSSupportsAutomaticTermination</key>
+	<false/>
+	<key>NSSupportsSuddenTermination</key>
+	<false/>
+	<key>TandemScreenRecordingUsageDescription</key>
+	<string>Tandem records the contents of the virtual display it creates so it can send the picture to your device. It never records your other screens.</string>
+</dict>
+</plist>

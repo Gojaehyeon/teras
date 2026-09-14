@@ -1,0 +1,94 @@
+/* Tandem — English */
+
+"app.name" = "Tandem";
+
+/* Menu bar */
+"menu.usb" = "USB";
+"menu.wifi" = "Wi-Fi";
+"menu.noDevices" = "No devices found";
+"menu.connect" = "Connect";
+"menu.disconnect" = "Disconnect";
+"menu.quality" = "Quality";
+"menu.frameRate" = "Frame rate";
+"menu.hidpi" = "Retina (HiDPI)";
+"menu.mirror" = "Mirror this Mac";
+"menu.settings" = "Open Settings…";
+"menu.onboarding" = "Setup Guide…";
+"menu.permissionsNeeded" = "Finish setup to start streaming";
+"menu.quit" = "Quit Tandem";
+
+/* Device status */
+"status.idle" = "Not connected";
+"status.connecting" = "Connecting…";
+"status.waitingForApp" = "Waiting for the app on the device";
+"status.unauthorized" = "Unauthorized — tap Allow on the device";
+"status.pairing" = "Pairing… %ld tries left";
+"status.negotiating" = "Starting…";
+"status.streaming" = "Connected, %ld fps";
+"status.failed" = "Problem: %@";
+"status.deviceState" = "Device is %@";
+"stats.line" = "%.0f fps decoded · %.1f ms round trip";
+
+/* Quality */
+"quality.low" = "Low (8 Mbps)";
+"quality.medium" = "Medium (20 Mbps)";
+"quality.high" = "High (40 Mbps)";
+"quality.ultra" = "Ultra (60 Mbps)";
+"fps.value" = "%ld fps";
+
+/* Settings */
+"settings.general" = "General";
+"settings.devices" = "Devices";
+"settings.permissions" = "Permissions";
+"settings.diagnostics" = "Diagnostics";
+"settings.launchAtLogin" = "Open Tandem at login";
+"settings.showStats" = "Show frame rate and latency in the menu";
+"settings.hostName" = "This Mac";
+"settings.hostId" = "Host ID";
+"settings.version" = "Version";
+"settings.pairedDevices" = "Paired devices";
+"settings.pairedDevicesHelp" = "Devices you paired over Wi-Fi. Forgetting one asks for the six-digit code again next time.";
+"settings.noPairedDevices" = "No devices paired yet";
+"settings.autoConnect" = "Connect automatically";
+"settings.forget" = "Forget";
+"settings.diagnosticsHelp" = "Recent activity, newest last.";
+"settings.copyLog" = "Copy";
+"settings.clearLog" = "Clear";
+
+/* Permissions */
+"permission.screenRecording" = "Screen Recording";
+"permission.screenRecordingHelp" = "Tandem records the virtual display it creates so it can send the picture to your device. Your other screens are never captured.";
+"permission.accessibility" = "Accessibility";
+"permission.accessibilityHelp" = "Lets taps, scrolls and key presses on your device move the pointer and type on this Mac.";
+"permission.localNetwork" = "Local Network";
+"permission.localNetworkHelp" = "Needed to find devices over Wi-Fi. USB works without it.";
+"permission.android" = "Android support";
+"permission.adbFound" = "adb found at %@";
+"permission.adbMissing" = "adb was not found. Install Android platform-tools, then refresh.";
+"permission.androidSteps" = "On the Android device: open Settings → About phone, tap Build number seven times, then turn on Developer options → USB debugging. Plug it in and tap Allow when it asks to trust this computer.";
+"permission.grant" = "Allow…";
+"permission.openSettings" = "Open System Settings";
+"permission.refresh" = "Check again";
+
+/* Pairing */
+"pairing.title" = "Pair device";
+"pairing.heading" = "Enter the code shown on %@";
+"pairing.body" = "The device is showing a six-digit code. Typing it here proves the two belong to the same person, and both sides then remember each other.";
+"pairing.placeholder" = "000000";
+"pairing.attemptsLeft" = "%ld tries left before the device picks a new code.";
+"pairing.cancel" = "Cancel";
+"pairing.confirm" = "Pair";
+"pairing.done" = "Paired.";
+
+/* Onboarding */
+"onboarding.title" = "Set up Tandem";
+"onboarding.welcomeTitle" = "Welcome to Tandem";
+"onboarding.welcomeBody" = "Tandem turns an iPhone, iPad or Android device into a real extra display for this Mac, over USB or Wi-Fi. Three system permissions make that possible; this guide walks through them.";
+"onboarding.networkTitle" = "Wi-Fi discovery";
+"onboarding.networkBody" = "To find devices over Wi-Fi, macOS asks once for permission to look at the local network. Devices on a cable work whatever you choose here.";
+"onboarding.androidTitle" = "Android over USB";
+"onboarding.stepCount" = "Step %1$ld of %2$ld";
+"onboarding.ready" = "Ready";
+"onboarding.back" = "Back";
+"onboarding.next" = "Next";
+"onboarding.finish" = "Done";

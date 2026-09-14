@@ -2,8 +2,9 @@
 
 ## Side Screen (MIT)
 Portions of the Mac host (virtual display bridge, screen capture, video
-encoder) and the Android receiver (video decoder, codec capability probing)
-are adapted from Side Screen, https://github.com/tranvuongquocdat/SideScreen
+encoder) and the Android receiver (video decoder, codec capability probing,
+panel geometry) are adapted from Side Screen,
+https://github.com/tranvuongquocdat/SideScreen
 
 MIT License — Copyright (c) 2025 Side Screen
 

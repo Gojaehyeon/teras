@@ -1,0 +1,94 @@
+/* Tandem — 한국어 */
+
+"app.name" = "Tandem";
+
+/* 메뉴 막대 */
+"menu.usb" = "USB";
+"menu.wifi" = "Wi-Fi";
+"menu.noDevices" = "기기를 찾지 못했습니다";
+"menu.connect" = "연결";
+"menu.disconnect" = "연결 해제";
+"menu.quality" = "화질";
+"menu.frameRate" = "주사율";
+"menu.hidpi" = "레티나(HiDPI)";
+"menu.mirror" = "이 Mac 미러링";
+"menu.settings" = "설정 열기…";
+"menu.onboarding" = "설정 안내…";
+"menu.permissionsNeeded" = "설정을 마쳐야 스트리밍을 시작합니다";
+"menu.quit" = "Tandem 종료";
+
+/* 기기 상태 */
+"status.idle" = "연결되지 않음";
+"status.connecting" = "연결 중…";
+"status.waitingForApp" = "기기에서 앱이 열리기를 기다리는 중";
+"status.unauthorized" = "인증되지 않음 — 기기에서 허용을 누르세요";
+"status.pairing" = "페어링 중… %ld회 남음";
+"status.negotiating" = "시작하는 중…";
+"status.streaming" = "연결됨, %ld fps";
+"status.failed" = "문제: %@";
+"status.deviceState" = "기기 상태: %@";
+"stats.line" = "디코딩 %.0f fps · 왕복 %.1f ms";
+
+/* 화질 */
+"quality.low" = "낮음(8 Mbps)";
+"quality.medium" = "보통(20 Mbps)";
+"quality.high" = "높음(40 Mbps)";
+"quality.ultra" = "최고(60 Mbps)";
+"fps.value" = "%ld fps";
+
+/* 설정 */
+"settings.general" = "일반";
+"settings.devices" = "기기";
+"settings.permissions" = "권한";
+"settings.diagnostics" = "진단";
+"settings.launchAtLogin" = "로그인할 때 Tandem 열기";
+"settings.showStats" = "메뉴에 프레임 수와 지연 시간 표시";
+"settings.hostName" = "이 Mac";
+"settings.hostId" = "호스트 ID";
+"settings.version" = "버전";
+"settings.pairedDevices" = "페어링된 기기";
+"settings.pairedDevicesHelp" = "Wi-Fi로 페어링한 기기입니다. 삭제하면 다음에 여섯 자리 코드를 다시 입력해야 합니다.";
+"settings.noPairedDevices" = "아직 페어링된 기기가 없습니다";
+"settings.autoConnect" = "자동으로 연결";
+"settings.forget" = "삭제";
+"settings.diagnosticsHelp" = "최근 활동입니다. 아래쪽이 최신입니다.";
+"settings.copyLog" = "복사";
+"settings.clearLog" = "지우기";
+
+/* 권한 */
+"permission.screenRecording" = "화면 기록";
+"permission.screenRecordingHelp" = "Tandem이 만든 가상 디스플레이를 기록해 기기로 화면을 보냅니다. 다른 화면은 기록하지 않습니다.";
+"permission.accessibility" = "손쉬운 사용";
+"permission.accessibilityHelp" = "기기에서의 터치, 스크롤, 키 입력으로 이 Mac의 포인터를 움직이고 글자를 입력합니다.";
+"permission.localNetwork" = "로컬 네트워크";
+"permission.localNetworkHelp" = "Wi-Fi로 기기를 찾을 때 필요합니다. USB 연결에는 필요하지 않습니다.";
+"permission.android" = "Android 지원";
+"permission.adbFound" = "adb 위치: %@";
+"permission.adbMissing" = "adb를 찾지 못했습니다. Android platform-tools를 설치한 뒤 다시 확인하세요.";
+"permission.androidSteps" = "Android 기기에서 설정 → 휴대전화 정보로 이동해 빌드 번호를 일곱 번 누른 다음, 개발자 옵션 → USB 디버깅을 켜세요. 케이블을 연결하고 이 컴퓨터를 신뢰할지 물으면 허용을 누르세요.";
+"permission.grant" = "허용…";
+"permission.openSettings" = "시스템 설정 열기";
+"permission.refresh" = "다시 확인";
+
+/* 페어링 */
+"pairing.title" = "기기 페어링";
+"pairing.heading" = "%@에 표시된 코드를 입력하세요";
+"pairing.body" = "기기 화면에 여섯 자리 코드가 떠 있습니다. 그 코드를 입력하면 두 기기가 같은 사용자의 것임이 확인되고, 이후에는 서로를 기억합니다.";
+"pairing.placeholder" = "000000";
+"pairing.attemptsLeft" = "%ld회 더 틀리면 기기가 새 코드를 만듭니다.";
+"pairing.cancel" = "취소";
+"pairing.confirm" = "페어링";
+"pairing.done" = "페어링을 마쳤습니다.";
+
+/* 온보딩 */
+"onboarding.title" = "Tandem 설정";
+"onboarding.welcomeTitle" = "Tandem을 시작합니다";
+"onboarding.welcomeBody" = "Tandem은 iPhone, iPad, Android 기기를 이 Mac의 확장 디스플레이로 만들어 줍니다. USB와 Wi-Fi 모두 지원합니다. 시스템 권한 세 가지가 필요하며, 이 안내가 차례로 도와줍니다.";
+"onboarding.networkTitle" = "Wi-Fi 검색";
+"onboarding.networkBody" = "Wi-Fi로 기기를 찾으려면 macOS가 로컬 네트워크 접근 권한을 한 번 묻습니다. 케이블로 연결한 기기는 이 선택과 관계없이 동작합니다.";
+"onboarding.androidTitle" = "USB로 Android 연결";
+"onboarding.stepCount" = "%1$ld/%2$ld 단계";
+"onboarding.ready" = "준비됨";
+"onboarding.back" = "이전";
+"onboarding.next" = "다음";
+"onboarding.finish" = "완료";

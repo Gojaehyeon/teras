@@ -1,0 +1,7 @@
+Tandem.xcodeproj/
+build/
+build-device/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+.DS_Store

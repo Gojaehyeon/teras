@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tandem</string>
+
+    <string name="idle_instruction">Connect a USB cable and open Tandem on your Mac</string>
+
+    <string name="status_listening">Ready on port 41777</string>
+    <string name="status_not_listening">Not listening</string>
+    <string name="status_wifi_off">Wi‑Fi off</string>
+    <string name="status_wifi_on">Wi‑Fi %1$s</string>
+    <string name="status_wifi_connected">Wi‑Fi connected</string>
+
+    <string name="pair_enter_pin">Enter this PIN on %1$s</string>
+    <string name="pair_attempts_left">%1$d attempts left</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_device_name">Device name</string>
+    <string name="settings_keep_screen_on">Keep the screen on</string>
+    <string name="settings_keep_screen_on_detail">The display stays awake while a Mac is connected</string>
+    <string name="settings_show_stats">Show stats overlay</string>
+    <string name="settings_show_stats_detail">Triple‑tap the picture to toggle it while streaming</string>
+    <string name="settings_paired_count">Paired Macs: %1$d</string>
+    <string name="settings_forget_paired">Forget all paired Macs</string>
+
+    <string name="action_done">Done</string>
+    <string name="action_save">Save</string>
+
+    <string name="stats_fps">%1$s fps</string>
+    <string name="stats_dropped">drop %1$s</string>
+    <string name="stats_decode">dec %1$s ms</string>
+    <string name="stats_rtt">rtt %1$s ms</string>
+    <string name="stats_e2e">e2e %1$s ms</string>
+    <string name="stats_queued">q %1$d</string>
+    <string name="stats_waiting">Waiting for video…</string>
+    <string name="stats_encrypted">encrypted</string>
+
+    <string name="error_listen_failed">Cannot listen on port 41777: %1$s</string>
+</resources>
