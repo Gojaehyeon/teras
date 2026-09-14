@@ -14,3 +14,4 @@ local.properties
 *.apk
 .env
 .omc/
+.asc/profiles/
