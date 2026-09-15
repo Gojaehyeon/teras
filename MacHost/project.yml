@@ -67,6 +67,9 @@ targets:
     platform: macOS
     sources:
       - path: Sources/Main
+      # Everything in Resources is copied into the bundle, including the
+      # Android control server (teras-control.jar) once it is built. Run
+      # `xcodegen generate` again after dropping a new file in here.
       - path: Resources
         excludes: ["**/.DS_Store"]
     dependencies:

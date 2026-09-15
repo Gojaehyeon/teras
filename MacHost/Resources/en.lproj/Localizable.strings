@@ -94,3 +94,25 @@
 "onboarding.finish" = "Done";
 
 "status.needsScreenRecording" = "Allow Screen Recording in System Settings";
+
+/* Teras Control */
+"settings.control" = "Control";
+"control.title" = "Teras Control";
+"control.help" = "Move the cursor past the edge of your desktop and the mouse, keyboard and scroll wheel drive the phone's own screen. This is separate from using the phone as a display; both can be on at once.";
+"control.status.off" = "Off";
+"control.status.starting" = "Starting the control server…";
+"control.status.readyRight" = "Move the cursor past the right edge";
+"control.status.readyLeft" = "Move the cursor past the left edge";
+"control.status.captured" = "Controlling phone — ⌃⌥⌘Esc to return";
+"control.status.failed" = "Problem: %@";
+"control.error.notBundled" = "This build of Teras does not include the control server, so Teras Control is unavailable.";
+"control.error.accessibility" = "Accessibility permission is needed before the cursor can cross onto a phone.";
+"control.accessibilityNote" = "Teras Control needs Accessibility permission to watch the cursor and take over the keyboard.";
+"control.openAccessibility" = "Open Accessibility settings";
+"control.noDevices" = "Plug in an Android device with USB debugging turned on.";
+"control.edge" = "Phone sits on the";
+"control.edge.right" = "Right";
+"control.edge.left" = "Left";
+"control.speed" = "Pointer speed";
+"control.speedValue" = "%.1f×";
+"control.status.linkLost" = "The control server stopped before Teras could use it.";

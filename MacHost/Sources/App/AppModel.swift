@@ -45,6 +45,10 @@ final class AppModel: ObservableObject {
             .sink { [weak self] _ in self?.objectWillChange.send() }
             .store(in: &cancellables)
 
+        sessions.control.objectWillChange
+            .sink { [weak self] _ in self?.objectWillChange.send() }
+            .store(in: &cancellables)
+
         if !AppSettings.hasCompletedOnboarding || !permissions.hasEverything {
             showOnboarding()
         }

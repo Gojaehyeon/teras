@@ -54,6 +54,9 @@ final class SessionManager: ObservableObject {
     let adb = AdbBridge()
     let pairingStore = PairingStore()
     let settingsStore = DeviceSettingsStore()
+    /// Teras Control (CONTROL.md) is independent of the display session; both
+    /// can be on for the same phone at the same time.
+    lazy var control = ControlManager(adb: adb, settingsStore: settingsStore)
 
     private let lanBrowser = LanBrowser()
     private var rows: [String: DeviceRow] = [:]
@@ -98,6 +101,7 @@ final class SessionManager: ObservableObject {
         watchTasks.forEach { $0.cancel() }
         watchTasks.removeAll()
         lanBrowser.stop()
+        control.shutdown()
         for session in sessions.values {
             session.stop(reason: "the Mac app is quitting")
         }
@@ -181,6 +185,7 @@ final class SessionManager: ObservableObject {
     }
 
     private func applyAndroidSnapshot(_ devices: [AdbDevice]) {
+        control.updateDevices(devices)
         let seen = Set(devices.map { "usb-android:\($0.serial)" })
 
         // Drop devices that are gone.

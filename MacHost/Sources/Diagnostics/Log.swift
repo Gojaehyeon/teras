@@ -3,7 +3,7 @@ import os
 
 /// Log categories; each maps to one `os.Logger` under the `app.teras` subsystem.
 enum LogCategory: String, CaseIterable, Sendable {
-    case app, display, capture, encode, transport, session, input, store
+    case app, display, capture, encode, transport, session, input, store, control
 }
 
 /// One line in the in-memory ring buffer shown in Settings → Diagnostics.

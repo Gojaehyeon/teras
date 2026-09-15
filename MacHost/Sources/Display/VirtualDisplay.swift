@@ -144,9 +144,29 @@ final class VirtualDisplay: VirtualDisplayHosting {
                  + " @ \(spec.refreshHz)Hz")
 
         registerScreenParamsObserver()
-        restorePosition()
         try? setMode(mode)
         ensurePhysicalStaysMain()
+        restorePositionWhenOnline()
+    }
+
+    /// `CGConfigureDisplayOrigin` answers `illegalArgument` (1001) when it is
+    /// called before WindowServer lists the new display as online, which is
+    /// the case immediately after `apply(settings)`. Wait for it, briefly.
+    private func restorePositionWhenOnline() {
+        guard let created = display else { return }
+        let id = created.displayID
+        Task { @MainActor [weak self] in
+            for _ in 0..<20 {
+                guard let self, self.display?.displayID == id else { return }
+                if CGDisplayIsOnline(id) != 0 {
+                    self.restorePosition()
+                    self.ensurePhysicalStaysMain()
+                    return
+                }
+                try? await Task.sleep(for: .milliseconds(100))
+            }
+            Log.error(.display, "Display \(id) never came online; position not restored")
+        }
     }
 
     func destroy() {

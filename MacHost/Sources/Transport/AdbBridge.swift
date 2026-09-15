@@ -32,7 +32,7 @@ enum AdbError: LocalizedError {
 /// Studio's server for device ownership, and shuts that server down on quit.
 final class AdbBridge: @unchecked Sendable {
     /// Private adb server port; Android Studio uses the default 5037.
-    static let serverPort = 5137
+    static let serverPort = 5037
 
     private let lock = NSLock()
     private var cachedPath: String?
@@ -106,13 +106,35 @@ final class AdbBridge: @unchecked Sendable {
 
     // MARK: - Server lifecycle
 
+    /// True when something already accepts connections on the adb server port.
+    static func isServerListening() -> Bool {
+        let fd = socket(AF_INET, SOCK_STREAM, 0)
+        guard fd >= 0 else { return false }
+        defer { close(fd) }
+        var tv = timeval(tv_sec: 0, tv_usec: 200_000)
+        setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, &tv, socklen_t(MemoryLayout<timeval>.size))
+        var addr = sockaddr_in()
+        addr.sin_family = sa_family_t(AF_INET)
+        addr.sin_port = in_port_t(UInt16(serverPort).bigEndian)
+        addr.sin_addr.s_addr = inet_addr("127.0.0.1")
+        let result = withUnsafePointer(to: &addr) { ptr in
+            ptr.withMemoryRebound(to: sockaddr.self, capacity: 1) { connect(fd, $0, socklen_t(MemoryLayout<sockaddr_in>.size)) }
+        }
+        return result == 0
+    }
+
     @discardableResult
     func startServer() -> Bool {
         guard adbPath != nil else { return false }
         do {
+            // The port is shared with Android Studio and the user's own adb.
+            // Only claim ownership (and therefore the right to kill-server on
+            // quit) when nothing was listening before we started it.
+            let alreadyRunning = Self.isServerListening()
             _ = try run(["start-server"], timeout: 20)
-            lock.lock(); startedServer = true; lock.unlock()
-            Log.info(.transport, "adb server running on port \(Self.serverPort)")
+            lock.lock(); startedServer = !alreadyRunning; lock.unlock()
+            Log.info(.transport, "adb server running on port \(Self.serverPort)"
+                     + (alreadyRunning ? " (pre-existing, will be left running)" : " (started by Teras)"))
             return true
         } catch {
             Log.error(.transport, "Could not start the adb server: \(error.localizedDescription)")
@@ -242,6 +264,35 @@ final class AdbBridge: @unchecked Sendable {
         lock.unlock()
         _ = try? run(["-s", serial, "forward", "--remove", "tcp:\(localPort)"], timeout: 5)
         Log.debug(.transport, "Removed forward tcp:\(localPort) for \(serial)")
+    }
+
+    // MARK: - Arbitrary commands
+
+    /// Run an adb command and return its standard output.
+    ///
+    /// Exposed so features outside the display session — Teras Control pushes
+    /// a jar and starts a process — reuse the same adb binary, private server
+    /// port and timeout handling instead of shelling out on their own.
+    @discardableResult
+    func execute(_ arguments: [String], timeout: TimeInterval = 20) throws -> String {
+        try run(arguments, timeout: timeout)
+    }
+
+    /// Start a long-running adb command the caller owns. The returned process
+    /// is already running; the caller must terminate it.
+    func spawn(_ arguments: [String], standardOutput: Pipe?, standardError: Pipe?) throws -> Process {
+        guard let path = adbPath else { throw AdbError.notInstalled }
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: path)
+        process.arguments = ["-P", "\(Self.serverPort)"] + arguments
+        process.standardOutput = standardOutput ?? Pipe()
+        process.standardError = standardError ?? Pipe()
+        do {
+            try process.run()
+        } catch {
+            throw AdbError.commandFailed(arguments.joined(separator: " "), -1, error.localizedDescription)
+        }
+        return process
     }
 
     // MARK: - Process plumbing

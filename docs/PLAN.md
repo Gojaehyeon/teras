@@ -61,7 +61,7 @@ Key runtime rules
   down only its session.
 * Host keeps a physical display as main whenever one exists (SideScreen #39).
 * USB Android: Teras ships `adb`, runs its own server on a private port
-  (`adb -P 5137`) to not fight Android Studio, watches `track-devices`.
+  on the standard port 5037, sharing it with Android Studio (two adb servers cannot share one USB device), watches `track-devices`.
 * USB iOS: `UsbmuxClient` speaks the plist protocol on `/var/run/usbmuxd`
   (`Listen` for attach/detach, `Connect` to 41777). Device name via lockdown
   `GetValue DeviceName` (no pairing session needed).

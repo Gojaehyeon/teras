@@ -12,13 +12,47 @@ struct DeviceSettings: Codable, Equatable, Sendable {
     /// Last name we saw, so paired devices can be listed while offline.
     var lastKnownName: String?
 
+    // MARK: - Teras Control (Android only)
+
+    /// Whether the cursor may cross onto this phone (CONTROL.md §7). Off by
+    /// default; the user turns it on per device.
+    var controlEnabled: Bool = false
+    /// Which side of the desktop the phone is attached to.
+    var controlEdge: ControlEdge = .right
+    /// Phone pixels per Mac point while captured.
+    var controlSpeed: Double = 1.5
+
     static let `default` = DeviceSettings()
 
     /// Frame rates offered in the UI.
     static let supportedFPS = [30, 60]
 
+    /// The range the pointer speed slider offers.
+    static let controlSpeedRange: ClosedRange<Double> = 0.5...3.0
+
     var normalizedFPS: Int {
         Self.supportedFPS.contains(fps) ? fps : 60
+    }
+
+    var normalizedControlSpeed: Double {
+        min(max(controlSpeed, Self.controlSpeedRange.lowerBound), Self.controlSpeedRange.upperBound)
+    }
+
+    // Decoded field by field so settings saved by an older build — which had
+    // no control keys — still load instead of falling back to the defaults.
+    init() {}
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        quality = try container.decodeIfPresent(QualityPreset.self, forKey: .quality) ?? .high
+        fps = try container.decodeIfPresent(Int.self, forKey: .fps) ?? 60
+        hiDPI = try container.decodeIfPresent(Bool.self, forKey: .hiDPI) ?? true
+        mode = try container.decodeIfPresent(DisplayMode.self, forKey: .mode) ?? .extend
+        autoConnect = try container.decodeIfPresent(Bool.self, forKey: .autoConnect) ?? false
+        lastKnownName = try container.decodeIfPresent(String.self, forKey: .lastKnownName)
+        controlEnabled = try container.decodeIfPresent(Bool.self, forKey: .controlEnabled) ?? false
+        controlEdge = try container.decodeIfPresent(ControlEdge.self, forKey: .controlEdge) ?? .right
+        controlSpeed = try container.decodeIfPresent(Double.self, forKey: .controlSpeed) ?? 1.5
     }
 }
 

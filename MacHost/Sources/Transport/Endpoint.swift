@@ -42,6 +42,12 @@ enum TerasEndpoint: Hashable, Identifiable, Sendable {
     }
 
     var isUSB: Bool { transport == .usb }
+
+    /// The adb serial, for the Android-only features (Teras Control).
+    var androidSerial: String? {
+        if case .usbAndroid(let serial, _) = self { return serial }
+        return nil
+    }
 }
 
 /// A live connection plus whatever has to be undone when it ends.

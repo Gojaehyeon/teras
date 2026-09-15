@@ -12,6 +12,8 @@ struct SettingsView: View {
                 .tabItem { Label(L("settings.general"), systemImage: "gearshape") }
             DevicesSettingsTab()
                 .tabItem { Label(L("settings.devices"), systemImage: "iphone") }
+            ControlSettingsTab()
+                .tabItem { Label(L("settings.control"), systemImage: "cursorarrow.motionlines") }
             PermissionsSettingsTab()
                 .tabItem { Label(L("settings.permissions"), systemImage: "lock.shield") }
             DiagnosticsTab()
@@ -100,6 +102,107 @@ private struct DevicesSettingsTab: View {
                 model.sessions.settingsStore.update(key) { $0.autoConnect = newValue }
             }
         )
+    }
+}
+
+/// Teras Control: which Android devices the cursor may cross onto, and how it
+/// behaves once it is there (CONTROL.md §7).
+private struct ControlSettingsTab: View {
+    @EnvironmentObject private var model: AppModel
+
+    private var control: ControlManager { model.sessions.control }
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                Text(L("control.title")).font(.headline)
+                Text(L("control.help"))
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                if !control.isSupported {
+                    Label(L("control.error.notBundled"), systemImage: "exclamationmark.triangle.fill")
+                        .foregroundStyle(.orange)
+                }
+
+                if !model.permissions.hasAccessibility {
+                    HStack(alignment: .top, spacing: 8) {
+                        Image(systemName: "exclamationmark.triangle.fill").foregroundStyle(.orange)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(L("control.accessibilityNote"))
+                                .fixedSize(horizontal: false, vertical: true)
+                            Button(L("control.openAccessibility")) {
+                                model.permissions.openAccessibilitySettings()
+                            }
+                            .buttonStyle(.link)
+                        }
+                    }
+                }
+
+                Divider()
+
+                if control.availableSerials.isEmpty {
+                    Text(L("control.noDevices"))
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.vertical, 24)
+                } else {
+                    ForEach(control.availableSerials, id: \.self) { serial in
+                        ControlDeviceRow(serial: serial)
+                    }
+                }
+            }
+            .padding()
+        }
+    }
+}
+
+private struct ControlDeviceRow: View {
+    @EnvironmentObject private var model: AppModel
+    let serial: String
+
+    private var control: ControlManager { model.sessions.control }
+    private var settings: DeviceSettings { control.settings(for: serial) }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Toggle(control.names[serial] ?? serial, isOn: Binding(
+                get: { control.isEnabled(serial: serial) },
+                set: { control.setEnabled($0, serial: serial) }
+            ))
+            .font(.headline)
+            .disabled(!control.isSupported)
+
+            Text(MenuBarContent.controlStatusText(control.status(serial: serial), edge: settings.controlEdge))
+                .font(.callout)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Picker(L("control.edge"), selection: Binding(
+                get: { settings.controlEdge },
+                set: { control.setEdge($0, serial: serial) }
+            )) {
+                Text(L("control.edge.right")).tag(ControlEdge.right)
+                Text(L("control.edge.left")).tag(ControlEdge.left)
+            }
+            .pickerStyle(.segmented)
+            .frame(maxWidth: 260)
+
+            HStack(spacing: 12) {
+                Text(L("control.speed"))
+                Slider(value: Binding(
+                    get: { settings.normalizedControlSpeed },
+                    set: { control.setSpeed($0, serial: serial) }
+                ), in: DeviceSettings.controlSpeedRange, step: 0.1)
+                .frame(maxWidth: 220)
+                Text(L("control.speedValue", settings.normalizedControlSpeed))
+                    .font(.system(.callout, design: .monospaced))
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding(12)
+        .background(RoundedRectangle(cornerRadius: 8).fill(Color.primary.opacity(0.04)))
     }
 }
 

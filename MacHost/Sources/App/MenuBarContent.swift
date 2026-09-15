@@ -85,6 +85,15 @@ private struct DeviceMenu: View {
             Button(checkmark(settings.mode == .mirror) + L("menu.mirror")) {
                 model.sessions.setMode(settings.mode == .mirror ? .extend : .mirror, for: row.id)
             }
+
+            if let serial = row.endpoint.androidSerial {
+                Divider()
+                Button(checkmark(model.sessions.control.isEnabled(serial: serial)) + L("control.title")) {
+                    model.sessions.control.toggle(serial: serial)
+                }
+                Text(MenuBarContent.controlStatusText(model.sessions.control.status(serial: serial),
+                                                      edge: settings.controlEdge))
+            }
         }
     }
 
@@ -110,6 +119,22 @@ extension MenuBarContent {
         case .negotiating: return L("status.negotiating")
         case .streaming(let fps): return L("status.streaming", fps)
         case .failed(let reason): return L("status.failed", reason)
+        }
+    }
+
+    /// The one line the menu shows under the Teras Control toggle.
+    static func controlStatusText(_ status: ControlStatus, edge: ControlEdge) -> String {
+        switch status {
+        case .off:
+            return L("control.status.off")
+        case .starting:
+            return L("control.status.starting")
+        case .ready:
+            return edge == .right ? L("control.status.readyRight") : L("control.status.readyLeft")
+        case .captured:
+            return L("control.status.captured")
+        case .failed(let reason):
+            return L("control.status.failed", reason)
         }
     }
 }
