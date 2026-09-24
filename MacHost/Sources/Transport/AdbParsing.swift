@@ -74,6 +74,10 @@ enum AdbParsing {
                 .filter { !$0.isEmpty }
             guard fields.count >= 2 else { continue }
             let serial = fields[0]
+            // Emulators (`emulator-5554`) and adb-over-WiFi entries (`ip:port`)
+            // are not USB phones; a receiver could never be reached through a
+            // cable there, so listing them only produces a retry storm.
+            guard !serial.hasPrefix("emulator-"), !serial.contains(":") else { continue }
             // `no permissions` and similar states span several words, and
             // `devices -l` appends key:value pairs we want to skip.
             let stateWords = fields.dropFirst().prefix { !$0.contains(":") }
