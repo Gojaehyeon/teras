@@ -2,4 +2,5 @@
 <resources>
     <color name="teras_background">#FF101216</color>
     <color name="teras_blue">#FF3E7BFA</color>
+    <color name="ic_launcher_background">#FF1C2A60</color>
 </resources>

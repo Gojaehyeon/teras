@@ -18,7 +18,7 @@
 - `Teras-Receiver-Android-1.0.0.apk`, versionCode 1, minSdk 26, R8 minified.
 - Signed with the Teras release key (`~/.teras-signing/teras-release.jks`, NOT in git; back it up — a lost key means a new package identity on Google Play).
   Certificate SHA-256 `95130cf48fa07a8d3b935592d6b594186bfc2a5473678eca2993d43999d9996d`.
-- SHA-256 `9174532e487a91ededb3ffe1dffdc5c738deaf943db9c84a81807c61285bbb98`, 1,089,821 bytes.
+- SHA-256 `14faeb4386e0e7a2c62c0557a90d41f7be933fe7a1f535c52ed4b6fcac0b0ddf`, 1,200,949 bytes (rebuilt with the app icon; release asset replaced).
 - Public download: https://github.com/Gojaehyeon/teras/releases/download/v1.0.0/Teras-Receiver-Android-1.0.0.apk
 
 ## iOS receiver (free)
