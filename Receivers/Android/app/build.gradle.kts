@@ -1,7 +1,14 @@
+import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+}
+
+// Release signing: read ~/.teras-signing/keystore.properties (never in git).
+val terasKeystore = Properties().apply {
+    val f = file(System.getProperty("user.home") + "/.teras-signing/keystore.properties")
+    if (f.exists()) f.inputStream().use { load(it) }
 }
 
 android {
@@ -18,6 +25,17 @@ android {
         resourceConfigurations += setOf("en", "ko")
     }
 
+    signingConfigs {
+        if (terasKeystore.containsKey("storeFile")) {
+            create("release") {
+                storeFile = file(terasKeystore.getProperty("storeFile"))
+                storePassword = terasKeystore.getProperty("storePassword")
+                keyAlias = terasKeystore.getProperty("keyAlias")
+                keyPassword = terasKeystore.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         debug {
             isMinifyEnabled = false
@@ -26,7 +44,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
         }
     }
 

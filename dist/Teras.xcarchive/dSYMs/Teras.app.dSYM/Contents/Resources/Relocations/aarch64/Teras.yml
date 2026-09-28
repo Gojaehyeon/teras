@@ -1,0 +1,24 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/go/Library/Developer/Xcode/DerivedData/Teras-etlejwpeaoxzcxamirazaqlonmsd/Build/Intermediates.noindex/ArchiveIntermediates/Teras/InstallationBuildProductsLocation/Applications/Teras.app/Contents/MacOS/Teras'
+relocations:
+  - { offset: 0xABD36, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppV7SwiftUI0B0AadEP4body4BodyQzvgTW', symObjAddr: 0x0, symBinAddr: 0x100000F68, symSize: 0x54 }
+  - { offset: 0xABDDD, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppVMa', symObjAddr: 0xB8, symBinAddr: 0x100001020, symSize: 0x38 }
+  - { offset: 0xABDF1, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppVAC7SwiftUI0B0AAWl', symObjAddr: 0xF0, symBinAddr: 0x100001058, symSize: 0x44 }
+  - { offset: 0xABE05, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppVwCP', symObjAddr: 0x134, symBinAddr: 0x10000109C, symSize: 0x48 }
+  - { offset: 0xABE19, size: 0x8, addend: 0x0, symName: ___swift_instantiateConcreteTypeFromMangledNameV2, symObjAddr: 0x17C, symBinAddr: 0x1000010E4, symSize: 0x50 }
+  - { offset: 0xABE2D, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppVwxx', symObjAddr: 0x1CC, symBinAddr: 0x100001134, symSize: 0x40 }
+  - { offset: 0xABE41, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppVwcp', symObjAddr: 0x20C, symBinAddr: 0x100001174, symSize: 0x50 }
+  - { offset: 0xABE55, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppVwca', symObjAddr: 0x25C, symBinAddr: 0x1000011C4, symSize: 0x50 }
+  - { offset: 0xABE69, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppVwtk', symObjAddr: 0x2AC, symBinAddr: 0x100001214, symSize: 0x50 }
+  - { offset: 0xABE7D, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppVwta', symObjAddr: 0x2FC, symBinAddr: 0x100001264, symSize: 0x50 }
+  - { offset: 0xABE91, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppVwet', symObjAddr: 0x34C, symBinAddr: 0x1000012B4, symSize: 0xC }
+  - { offset: 0xABEA5, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppVwst', symObjAddr: 0x3A0, symBinAddr: 0x100001308, symSize: 0xC }
+  - { offset: 0xABEB9, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppVMr', symObjAddr: 0x3F8, symBinAddr: 0x100001360, symSize: 0x68 }
+  - { offset: 0xABECD, size: 0x8, addend: 0x0, symName: '_$s7SwiftUI28NSApplicationDelegateAdaptorVy9TerasCore0f3AppD0CGMa', symObjAddr: 0x460, symBinAddr: 0x1000013C8, symSize: 0x54 }
+  - { offset: 0xABEE1, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppV7SwiftUI0B0AA4BodyAdEP_AD5ScenePWT', symObjAddr: 0x4B4, symBinAddr: 0x10000141C, symSize: 0x10 }
+  - { offset: 0xABEF5, size: 0x8, addend: 0x0, symName: '_$s9TerasCore0A9RootSceneVAC7SwiftUI0D0AAWl', symObjAddr: 0x4C4, symBinAddr: 0x10000142C, symSize: 0x40 }
+  - { offset: 0xABF2E, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppV7SwiftUI0B0AadEP4body4BodyQzvgTW', symObjAddr: 0x0, symBinAddr: 0x100000F68, symSize: 0x54 }
+  - { offset: 0xABF82, size: 0x8, addend: 0x0, symName: '_$s5Teras0A3AppV7SwiftUI0B0AadEPxycfCTW', symObjAddr: 0x54, symBinAddr: 0x100000FBC, symSize: 0x2C }
+  - { offset: 0xABFEA, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x80, symBinAddr: 0x100000FE8, symSize: 0x38 }
+...

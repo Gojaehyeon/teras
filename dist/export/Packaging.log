@@ -1,0 +1,243 @@
+2026-09-28 05:51:20 +0000 [MT] Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x77602e2d00; archive(resolved)="<IDEArchive: 0x775ff6dc00>", distributionTask(resolved)="2", distributionDestination(resolved)="1", distributionMethod(resolved)="<IDEDistributionMethodDeveloperID: 0x775ee92520>", team(resolved)="<IDEProvisioningBasicTeam: 0x775df1a560; teamID='RP5GZ99V95', teamName='(null)'>">
+	Chain (12, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x77602e2d00; archive = "<IDEArchive: 0x775ff6dc00>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x775ee92520>", team="<IDEProvisioningBasicTeam: 0x775df1a560; teamID='RP5GZ99V95', teamName='(null)'>">
+	<IDEDistributionProcessingPipelineContext: 0x77602e3600; archive = "<IDEArchive: 0x775ff6dc00>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x775ee92520>", team="<IDEProvisioningBasicTeam: 0x775df1a560; teamID='RP5GZ99V95', teamName='(null)'>">
+	<IDEDistributionContext: 0x775e0fe080; archive = "<IDEArchive: 0x775ff6dc00>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x775ee92520>", team="<IDEProvisioningBasicTeam: 0x775df1a560; teamID='RP5GZ99V95', teamName='(null)'>">
+	<IDEDistributionContext: 0x775e0fde00; archive = "<IDEArchive: 0x775ff6dc00>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x775ee92520>", team="<IDEProvisioningBasicTeam: 0x775df1a560; teamID='RP5GZ99V95', teamName='(null)'>">
+	<IDEDistributionContext: 0x775e0fdb80; archive = "<IDEArchive: 0x775ff6dc00>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x775ee92520>", team="<IDEProvisioningBasicTeam: 0x775df1a560; teamID='RP5GZ99V95', teamName='(null)'>">
+	<IDEDistributionContext: 0x775e0fd900; archive = "<IDEArchive: 0x775ff6dc00>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x775ee92520>", team="<IDEProvisioningBasicTeam: 0x775df1a560; teamID='RP5GZ99V95', teamName='(null)'>">
+	<IDEDistributionContext: 0x775e0fca00; archive = "<IDEArchive: 0x775ff6dc00>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x775ee92520>", team="<IDEProvisioningBasicTeam: 0x775df1a560; teamID='RP5GZ99V95', teamName='(null)'>">
+	<IDEDistributionContext: 0x775e0fc780; archive = "<IDEArchive: 0x775ff6dc00>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x775ee92520>", team="<IDEProvisioningBasicTeam: 0x775df1a560; teamID='RP5GZ99V95', teamName='(null)'>">
+	<IDEDistributionContext: 0x775e0fc500; archive = "<IDEArchive: 0x775ff6dc00>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x775ee92520>", team="<IDEProvisioningBasicTeam: 0x775df1a560; teamID='RP5GZ99V95', teamName='(null)'>">
+	<IDEDistributionContext: 0x775e0fc280; archive = "<IDEArchive: 0x775ff6dc00>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x775ee92520>", team="(null)">
+	<IDEDistributionContext: 0x775e0fc000; archive = "<IDEArchive: 0x775ff6dc00>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x775ee92520>", team="(null)">
+	<IDEDistributionContext: 0x1027e31b0; archive = "<IDEArchive: 0x775ff6dc00>", distributionMethod="(null)", team="(null)">
+</IDEDistributionProcessingPipelineContext: 0x77602e2d00>
+2026-09-28 05:51:20 +0000 [MT] Processing step: IDEDistributionCreateDestRootStep
+2026-09-28 05:51:20 +0000 [MT] Processing step: IDEDistributionCopyItemStep
+2026-09-28 05:51:20 +0000 [MT] Running /usr/bin/ditto '-V' '/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app' '/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app'
+2026-09-28 05:51:20 +0000  >>> Copying /Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app 
+2026-09-28 05:51:20 +0000  copying file ./Contents/_CodeSignature/CodeResources ... 
+2026-09-28 05:51:20 +0000  hardlinked ./Contents/_CodeSignature/CodeResources
+2026-09-28 05:51:20 +0000  copying file ./Contents/MacOS/Teras ... 
+2026-09-28 05:51:20 +0000  hardlinked ./Contents/MacOS/Teras
+2026-09-28 05:51:20 +0000  copying file ./Contents/Resources/teras-control.jar ... 
+2026-09-28 05:51:20 +0000  hardlinked ./Contents/Resources/teras-control.jar
+2026-09-28 05:51:20 +0000  copying file ./Contents/Resources/en.lproj/Localizable.strings ... 
+2026-09-28 05:51:20 +0000  hardlinked ./Contents/Resources/en.lproj/Localizable.strings
+2026-09-28 05:51:20 +0000  copying file ./Contents/Resources/ko.lproj/Localizable.strings ... 
+2026-09-28 05:51:20 +0000  hardlinked ./Contents/Resources/ko.lproj/Localizable.strings
+2026-09-28 05:51:20 +0000  copying symlink ./Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Resources ... 
+2026-09-28 05:51:20 +0000  linked ./Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Resources
+2026-09-28 05:51:20 +0000  copying file ./Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources ... 
+2026-09-28 05:51:20 +0000  hardlinked ./Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+2026-09-28 05:51:20 +0000  copying file ./Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A/Resources/Info.plist ... 
+2026-09-28 05:51:20 +0000  hardlinked ./Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A/Resources/Info.plist
+2026-09-28 05:51:20 +0000  copying file ./Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct ... 
+2026-09-28 05:51:20 +0000  hardlinked ./Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct
+2026-09-28 05:51:20 +0000  copying symlink ./Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/Current ... 
+2026-09-28 05:51:20 +0000  linked ./Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/Current
+2026-09-28 05:51:20 +0000  copying symlink ./Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct ... 
+2026-09-28 05:51:20 +0000  linked ./Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct
+2026-09-28 05:51:20 +0000  copying symlink ./Contents/Frameworks/TerasCore.framework/Resources ... 
+2026-09-28 05:51:20 +0000  linked ./Contents/Frameworks/TerasCore.framework/Resources
+2026-09-28 05:51:20 +0000  copying symlink ./Contents/Frameworks/TerasCore.framework/TerasCore ... 
+2026-09-28 05:51:20 +0000  linked ./Contents/Frameworks/TerasCore.framework/TerasCore
+2026-09-28 05:51:20 +0000  copying file ./Contents/Frameworks/TerasCore.framework/Versions/A/_CodeSignature/CodeResources ... 
+2026-09-28 05:51:20 +0000  hardlinked ./Contents/Frameworks/TerasCore.framework/Versions/A/_CodeSignature/CodeResources
+2026-09-28 05:51:20 +0000  copying file ./Contents/Frameworks/TerasCore.framework/Versions/A/Resources/Info.plist ... 
+2026-09-28 05:51:20 +0000  hardlinked ./Contents/Frameworks/TerasCore.framework/Versions/A/Resources/Info.plist
+2026-09-28 05:51:20 +0000  copying file ./Contents/Frameworks/TerasCore.framework/Versions/A/TerasCore ... 
+2026-09-28 05:51:20 +0000  hardlinked ./Contents/Frameworks/TerasCore.framework/Versions/A/TerasCore
+2026-09-28 05:51:20 +0000  copying symlink ./Contents/Frameworks/TerasCore.framework/Versions/Current ... 
+2026-09-28 05:51:20 +0000  linked ./Contents/Frameworks/TerasCore.framework/Versions/Current
+2026-09-28 05:51:20 +0000  copying file ./Contents/Info.plist ... 
+2026-09-28 05:51:20 +0000  hardlinked ./Contents/Info.plist
+2026-09-28 05:51:20 +0000  copying file ./Contents/PkgInfo ... 
+2026-09-28 05:51:20 +0000  hardlinked ./Contents/PkgInfo
+2026-09-28 05:51:20 +0000 [MT] /usr/bin/ditto exited with 0
+2026-09-28 05:51:20 +0000 [MT] Processing step: IDEDistributionEmbedProfileStep
+2026-09-28 05:51:20 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x775f94cae0; bundleID='app.teras.mac.core', path='<DVTFilePath:0x775f858480:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasCore.framework/Versions/A'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x775f94c960; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x775dcf31e0; name='Apple Development: Created via API (7QK9US4Q57)', hash='588CB36D729D010E1DED213DAA89397844EA6086', serialNumber='55642E256736015D5D9EA24C8175E557', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-08-31 03:25:27 +0000''>', entitlements='(null)', teamID='RP5GZ99V95', identifier='app.teras.mac.core', executablePath='<DVTFilePath:0x775f859020:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasCore.framework/Versions/A/TerasCore'>', hardenedRuntime='1'>'>
+2026-09-28 05:51:20 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x775f94c660; bundleID='terasprotocol.TerasProtocol', path='<DVTFilePath:0x775f8583c0:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x775f94d500; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x775dcf23e0; name='Apple Development: Created via API (7QK9US4Q57)', hash='588CB36D729D010E1DED213DAA89397844EA6086', serialNumber='55642E256736015D5D9EA24C8175E557', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-08-31 03:25:27 +0000''>', entitlements='(null)', teamID='RP5GZ99V95', identifier='terasprotocol.TerasProtocol', executablePath='<DVTFilePath:0x775f97b400:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct'>', hardenedRuntime='1'>'>
+2026-09-28 05:51:20 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x775f94c180; bundleID='app.teras.mac', path='<DVTFilePath:0x775fdf6e80:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x775f94c120; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x775dcf2140; name='Apple Development: Created via API (7QK9US4Q57)', hash='588CB36D729D010E1DED213DAA89397844EA6086', serialNumber='55642E256736015D5D9EA24C8175E557', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-08-31 03:25:27 +0000''>', entitlements='{
+    "com.apple.security.app-sandbox" = 0;
+    "com.apple.security.cs.allow-dyld-environment-variables" = 1;
+    "com.apple.security.cs.allow-jit" = 1;
+    "com.apple.security.cs.disable-library-validation" = 1;
+    "com.apple.security.device.usb" = 1;
+    "com.apple.security.network.client" = 1;
+    "com.apple.security.network.server" = 1;
+}', teamID='RP5GZ99V95', identifier='app.teras.mac', executablePath='<DVTFilePath:0x775f94c720:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/MacOS/Teras'>', hardenedRuntime='1'>'>
+2026-09-28 05:51:20 +0000 [MT] Processing step: IDEDistributionInfoPlistStep
+2026-09-28 05:51:20 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2026-09-28 05:51:20 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2026-09-28 05:51:20 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2026-09-28 05:51:20 +0000 [MT] Processing step: IDEDistributionAppThinningPlistStep
+2026-09-28 05:51:20 +0000 [MT] Processing step: IDEDistributionSymbolsStep
+2026-09-28 05:51:20 +0000 [MT] Skipping step: IDEDistributionSymbolsStep because it said so
+2026-09-28 05:51:20 +0000 [MT] Processing step: IDEDistributionAppThinningStep
+2026-09-28 05:51:20 +0000 [MT] Skipping step: IDEDistributionAppThinningStep because it said so
+2026-09-28 05:51:20 +0000 [MT] Processing step: IDEDistributionArchThinningStep
+2026-09-28 05:51:20 +0000 [MT] Archs to thin for item /Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasCore.framework/Versions/A are []
+2026-09-28 05:51:20 +0000 [MT] Archs to thin for item /Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A are []
+2026-09-28 05:51:20 +0000 [MT] Archs to thin for item /Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app are []
+2026-09-28 05:51:20 +0000 [MT] Processing step: IDEDistributionODRStep
+2026-09-28 05:51:20 +0000 [MT] Processing step: IDEDistributionStripXattrsStep
+2026-09-28 05:51:20 +0000 [MT] Skipping stripping extended attributes because the codesign step will strip them.
+2026-09-28 05:51:20 +0000 [MT] Skipping stripping extended attributes because the codesign step will strip them.
+2026-09-28 05:51:20 +0000 [MT] Skipping stripping extended attributes because the codesign step will strip them.
+2026-09-28 05:51:20 +0000 [MT] Processing step: IDEDistributionCodesignStep
+2026-09-28 05:51:20 +0000 [MT] Entitlements for <IDEDistributionItem: 0x775f94cae0; bundleID='app.teras.mac.core', path='<DVTFilePath:0x775f858480:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasCore.framework/Versions/A'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x775f94c960; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x775dfbfc60; name='Apple Development: Created via API (7QK9US4Q57)', hash='588CB36D729D010E1DED213DAA89397844EA6086', serialNumber='55642E256736015D5D9EA24C8175E557', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-08-31 03:25:27 +0000''>', entitlements='(null)', teamID='RP5GZ99V95', identifier='app.teras.mac.core', executablePath='<DVTFilePath:0x775f859020:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasCore.framework/Versions/A/TerasCore'>', hardenedRuntime='1'>'>: {
+}
+2026-09-28 05:51:20 +0000 [MT] Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2026-09-28 05:51:20 +0000 [MT] Entitlements for <IDEDistributionItem: 0x775f94cae0; bundleID='app.teras.mac.core', path='<DVTFilePath:0x775f858480:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasCore.framework/Versions/A'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x775f94c960; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x775dfbfc60; name='Apple Development: Created via API (7QK9US4Q57)', hash='588CB36D729D010E1DED213DAA89397844EA6086', serialNumber='55642E256736015D5D9EA24C8175E557', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-08-31 03:25:27 +0000''>', entitlements='(null)', teamID='RP5GZ99V95', identifier='app.teras.mac.core', executablePath='<DVTFilePath:0x775f859020:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasCore.framework/Versions/A/TerasCore'>', hardenedRuntime='1'>'> are: {
+}
+2026-09-28 05:51:20 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x775f94cae0; bundleID='app.teras.mac.core', path='<DVTFilePath:0x775f858480:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasCore.framework/Versions/A'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x775f94c960; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x775dfbfc60; name='Apple Development: Created via API (7QK9US4Q57)', hash='588CB36D729D010E1DED213DAA89397844EA6086', serialNumber='55642E256736015D5D9EA24C8175E557', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-08-31 03:25:27 +0000''>', entitlements='(null)', teamID='RP5GZ99V95', identifier='app.teras.mac.core', executablePath='<DVTFilePath:0x775f859020:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasCore.framework/Versions/A/TerasCore'>', hardenedRuntime='1'>'> to: /var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/entitlements~~~zEVxmg
+2026-09-28 05:51:20 +0000 [MT] invoking codesign: <NSConcreteTask: 0x776083c320; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    A33736DB686F56AEDFCD4450146E7A5E68B05430,
+    "--entitlements",
+    "/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/entitlements~~~zEVxmg",
+    "--requirements",
+    "=designated => anchor apple generic  and identifier \"$self.identifier\" and ((cert leaf[field.1.2.840.113635.100.6.1.9] exists) or ( certificate 1[field.1.2.840.113635.100.6.2.6] exists and certificate leaf[field.1.2.840.113635.100.6.1.13] exists  and certificate leaf[subject.OU] = \"RP5GZ99V95\" ))",
+    "--preserve-metadata=identifier,flags,runtime,launch-constraints,library-constraints",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app/Contents/Frameworks/TerasCore.framework/Versions/A"
+)'>
+2026-09-28 05:51:21 +0000 [MT] codesign output: /var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app/Contents/Frameworks/TerasCore.framework/Versions/A: replacing existing signature
+/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app/Contents/Frameworks/TerasCore.framework/Versions/A: signed bundle with Mach-O universal (x86_64 arm64) [app.teras.mac.core]
+2026-09-28 05:51:21 +0000 [MT] Entitlements for <IDEDistributionItem: 0x775f94c660; bundleID='terasprotocol.TerasProtocol', path='<DVTFilePath:0x775f8583c0:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x775f94d500; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x775dfbfb80; name='Apple Development: Created via API (7QK9US4Q57)', hash='588CB36D729D010E1DED213DAA89397844EA6086', serialNumber='55642E256736015D5D9EA24C8175E557', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-08-31 03:25:27 +0000''>', entitlements='(null)', teamID='RP5GZ99V95', identifier='terasprotocol.TerasProtocol', executablePath='<DVTFilePath:0x775f97b400:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct'>', hardenedRuntime='1'>'>: {
+}
+2026-09-28 05:51:21 +0000 [MT] Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2026-09-28 05:51:21 +0000 [MT] Entitlements for <IDEDistributionItem: 0x775f94c660; bundleID='terasprotocol.TerasProtocol', path='<DVTFilePath:0x775f8583c0:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x775f94d500; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x775dfbfb80; name='Apple Development: Created via API (7QK9US4Q57)', hash='588CB36D729D010E1DED213DAA89397844EA6086', serialNumber='55642E256736015D5D9EA24C8175E557', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-08-31 03:25:27 +0000''>', entitlements='(null)', teamID='RP5GZ99V95', identifier='terasprotocol.TerasProtocol', executablePath='<DVTFilePath:0x775f97b400:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct'>', hardenedRuntime='1'>'> are: {
+}
+2026-09-28 05:51:21 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x775f94c660; bundleID='terasprotocol.TerasProtocol', path='<DVTFilePath:0x775f8583c0:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x775f94d500; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x775dfbfb80; name='Apple Development: Created via API (7QK9US4Q57)', hash='588CB36D729D010E1DED213DAA89397844EA6086', serialNumber='55642E256736015D5D9EA24C8175E557', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-08-31 03:25:27 +0000''>', entitlements='(null)', teamID='RP5GZ99V95', identifier='terasprotocol.TerasProtocol', executablePath='<DVTFilePath:0x775f97b400:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct'>', hardenedRuntime='1'>'> to: /var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/entitlements~~~aKYaED
+2026-09-28 05:51:21 +0000 [MT] invoking codesign: <NSConcreteTask: 0x77608600a0; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    A33736DB686F56AEDFCD4450146E7A5E68B05430,
+    "--entitlements",
+    "/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/entitlements~~~aKYaED",
+    "--requirements",
+    "=designated => anchor apple generic  and identifier \"$self.identifier\" and ((cert leaf[field.1.2.840.113635.100.6.1.9] exists) or ( certificate 1[field.1.2.840.113635.100.6.2.6] exists and certificate leaf[field.1.2.840.113635.100.6.1.13] exists  and certificate leaf[subject.OU] = \"RP5GZ99V95\" ))",
+    "--preserve-metadata=identifier,flags,runtime,launch-constraints,library-constraints",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app/Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A"
+)'>
+2026-09-28 05:51:22 +0000 [MT] codesign output: /var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app/Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A: replacing existing signature
+/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app/Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A: signed bundle with Mach-O universal (x86_64 arm64) [terasprotocol.TerasProtocol]
+2026-09-28 05:51:22 +0000 [MT] Entitlements for <IDEDistributionItem: 0x775f94c180; bundleID='app.teras.mac', path='<DVTFilePath:0x775fdf6e80:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x775f94c120; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x775dfbfaa0; name='Apple Development: Created via API (7QK9US4Q57)', hash='588CB36D729D010E1DED213DAA89397844EA6086', serialNumber='55642E256736015D5D9EA24C8175E557', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-08-31 03:25:27 +0000''>', entitlements='{
+    "com.apple.security.app-sandbox" = 0;
+    "com.apple.security.cs.allow-dyld-environment-variables" = 1;
+    "com.apple.security.cs.allow-jit" = 1;
+    "com.apple.security.cs.disable-library-validation" = 1;
+    "com.apple.security.device.usb" = 1;
+    "com.apple.security.network.client" = 1;
+    "com.apple.security.network.server" = 1;
+}', teamID='RP5GZ99V95', identifier='app.teras.mac', executablePath='<DVTFilePath:0x775f94c720:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/MacOS/Teras'>', hardenedRuntime='1'>'>: {
+    "com.apple.security.app-sandbox" = 0;
+    "com.apple.security.cs.allow-dyld-environment-variables" = 1;
+    "com.apple.security.cs.allow-jit" = 1;
+    "com.apple.security.cs.disable-library-validation" = 1;
+    "com.apple.security.device.usb" = 1;
+    "com.apple.security.network.client" = 1;
+    "com.apple.security.network.server" = 1;
+}
+2026-09-28 05:51:22 +0000 [MT] Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2026-09-28 05:51:22 +0000 [MT] Entitlements for <IDEDistributionItem: 0x775f94c180; bundleID='app.teras.mac', path='<DVTFilePath:0x775fdf6e80:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x775f94c120; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x775dfbfaa0; name='Apple Development: Created via API (7QK9US4Q57)', hash='588CB36D729D010E1DED213DAA89397844EA6086', serialNumber='55642E256736015D5D9EA24C8175E557', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-08-31 03:25:27 +0000''>', entitlements='{
+    "com.apple.security.app-sandbox" = 0;
+    "com.apple.security.cs.allow-dyld-environment-variables" = 1;
+    "com.apple.security.cs.allow-jit" = 1;
+    "com.apple.security.cs.disable-library-validation" = 1;
+    "com.apple.security.device.usb" = 1;
+    "com.apple.security.network.client" = 1;
+    "com.apple.security.network.server" = 1;
+}', teamID='RP5GZ99V95', identifier='app.teras.mac', executablePath='<DVTFilePath:0x775f94c720:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/MacOS/Teras'>', hardenedRuntime='1'>'> are: {
+    "com.apple.security.app-sandbox" = 0;
+    "com.apple.security.cs.allow-dyld-environment-variables" = 1;
+    "com.apple.security.cs.allow-jit" = 1;
+    "com.apple.security.cs.disable-library-validation" = 1;
+    "com.apple.security.device.usb" = 1;
+    "com.apple.security.network.client" = 1;
+    "com.apple.security.network.server" = 1;
+}
+2026-09-28 05:51:22 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x775f94c180; bundleID='app.teras.mac', path='<DVTFilePath:0x775fdf6e80:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x775f94c120; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x775dfbfaa0; name='Apple Development: Created via API (7QK9US4Q57)', hash='588CB36D729D010E1DED213DAA89397844EA6086', serialNumber='55642E256736015D5D9EA24C8175E557', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-08-31 03:25:27 +0000''>', entitlements='{
+    "com.apple.security.app-sandbox" = 0;
+    "com.apple.security.cs.allow-dyld-environment-variables" = 1;
+    "com.apple.security.cs.allow-jit" = 1;
+    "com.apple.security.cs.disable-library-validation" = 1;
+    "com.apple.security.device.usb" = 1;
+    "com.apple.security.network.client" = 1;
+    "com.apple.security.network.server" = 1;
+}', teamID='RP5GZ99V95', identifier='app.teras.mac', executablePath='<DVTFilePath:0x775f94c720:'/Users/go/lab/teras/dist/Teras.xcarchive/Products/Applications/Teras.app/Contents/MacOS/Teras'>', hardenedRuntime='1'>'> to: /var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/entitlements~~~sv6XhE
+2026-09-28 05:51:22 +0000 [MT] invoking codesign: <NSConcreteTask: 0x77608600f0; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    A33736DB686F56AEDFCD4450146E7A5E68B05430,
+    "--entitlements",
+    "/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/entitlements~~~sv6XhE",
+    "--requirements",
+    "=designated => anchor apple generic  and identifier \"$self.identifier\" and ((cert leaf[field.1.2.840.113635.100.6.1.9] exists) or ( certificate 1[field.1.2.840.113635.100.6.2.6] exists and certificate leaf[field.1.2.840.113635.100.6.1.13] exists  and certificate leaf[subject.OU] = \"RP5GZ99V95\" ))",
+    "--preserve-metadata=identifier,flags,runtime,launch-constraints,library-constraints",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app"
+)'>
+2026-09-28 05:51:23 +0000 [MT] codesign output: /var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app: replacing existing signature
+/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app: signed app bundle with Mach-O universal (x86_64 arm64) [app.teras.mac]
+2026-09-28 05:51:23 +0000 [MT] Processing step: IDEDistributionZipODRItemStep
+2026-09-28 05:51:23 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2026-09-28 05:51:23 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2026-09-28 05:51:23 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2026-09-28 05:51:23 +0000 [MT] Processing step: IDEDistributionSkipPackagingStep
+2026-09-28 05:51:23 +0000 [MT] Processing step: IDEDistributionAppStoreInformationStep
+2026-09-28 05:51:23 +0000 [MT] Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2026-09-28 05:51:23 +0000 [MT] Processing step: IDEDistributionGenerateProcessedDistributionItems
+2026-09-28 05:51:23 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x775f94d8c0:'/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app/Contents/Frameworks/TerasCore.framework/Versions/A'>
+2026-09-28 05:51:23 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x775f94e820:'/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app/Contents/Frameworks/TerasProtocol_-4E5F826E0BE57CA2_PackageProduct.framework/Versions/A'>
+2026-09-28 05:51:23 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x775f94cba0:'/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app'>
+2026-09-28 05:51:23 +0000 [MT] [OPTIONAL] Didn't find embedded provisioning profile for <DVTFilePath:0x775f94cba0:'/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app'>: Error Domain=NSCocoaErrorDomain Code=4 "No file at <DVTFilePath:0x77603a4c40:'/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app/Contents/embedded.provisionprofile'>" UserInfo={NSLocalizedDescription=No file at <DVTFilePath:0x77603a4c40:'/var/folders/wc/4__lz_n55ds66xw8gx5sh4h80000gn/T/XcodeDistPipeline.~~~UfaSDc/Root/Applications/Teras.app/Contents/embedded.provisionprofile'>}
+2026-09-28 05:51:23 +0000 [MT] Processing step: IDEDistributionCreateManifestStep
+2026-09-28 05:51:23 +0000 [MT] Skipping step: IDEDistributionCreateManifestStep because it said so
