@@ -116,3 +116,6 @@
 "control.speed" = "포인터 속도";
 "control.speedValue" = "%.1f배";
 "control.status.linkLost" = "컨트롤 서버가 사용되기 전에 멈췄습니다.";
+
+"settings.keepAwake" = "기기가 연결된 동안 Mac 잠자기 방지";
+"settings.keepAwake.help" = "다음 연결부터 적용됩니다. 잠든 Mac을 폰에서 깨울 수는 없으며, 스트리밍 중에는 화면이 켜져 있어야 합니다.";

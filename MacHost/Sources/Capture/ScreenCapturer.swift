@@ -83,6 +83,7 @@ final class ScreenCapturer {
     private var monitorTimer: DispatchSourceTimer?
 
     private var sleepAssertionID = IOPMAssertionID(0)
+    private var systemSleepAssertionID = IOPMAssertionID(0)
     private var holdsSleepAssertion = false
 
     /// Last delivered buffer, re-encoded as a keepalive when the desktop is
@@ -97,6 +98,7 @@ final class ScreenCapturer {
         let assertionID = sleepAssertionID
         if holdsSleepAssertion {
             IOPMAssertionRelease(assertionID)
+            if systemSleepAssertionID != 0 { IOPMAssertionRelease(systemSleepAssertionID) }
         }
     }
 
@@ -108,7 +110,7 @@ final class ScreenCapturer {
         generation &+= 1
         restartAttempted = false
         resetFrameState()
-        holdDisplaySleepAssertion()
+        if AppSettings.keepAwakeWhileConnected { holdDisplaySleepAssertion() }
         registerWakeObservers()
 
         do {
@@ -460,6 +462,13 @@ final class ScreenCapturer {
     private func holdDisplaySleepAssertion() {
         guard !holdsSleepAssertion else { return }
         var assertionID = IOPMAssertionID(0)
+        var systemID = IOPMAssertionID(0)
+        if IOPMAssertionCreateWithName(kIOPMAssertionTypePreventUserIdleSystemSleep as CFString,
+                                       IOPMAssertionLevel(kIOPMAssertionLevelOn),
+                                       "Teras is streaming to an external display" as CFString,
+                                       &systemID) == kIOReturnSuccess {
+            systemSleepAssertionID = systemID
+        }
         let result = IOPMAssertionCreateWithName(
             kIOPMAssertionTypePreventUserIdleDisplaySleep as CFString,
             IOPMAssertionLevel(kIOPMAssertionLevelOn),
@@ -477,6 +486,10 @@ final class ScreenCapturer {
         guard holdsSleepAssertion else { return }
         IOPMAssertionRelease(sleepAssertionID)
         sleepAssertionID = IOPMAssertionID(0)
+        if systemSleepAssertionID != 0 {
+            IOPMAssertionRelease(systemSleepAssertionID)
+            systemSleepAssertionID = 0
+        }
         holdsSleepAssertion = false
     }
 

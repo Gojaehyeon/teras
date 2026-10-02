@@ -28,6 +28,7 @@ private struct GeneralSettingsTab: View {
     @EnvironmentObject private var model: AppModel
     @State private var launchAtLogin = false
     @State private var showStats = AppSettings.showStats
+    @State private var keepAwake = AppSettings.keepAwakeWhileConnected
 
     var body: some View {
         Form {
@@ -39,6 +40,13 @@ private struct GeneralSettingsTab: View {
                 .onChange(of: showStats) { _, newValue in
                     AppSettings.showStats = newValue
                 }
+            Toggle(L("settings.keepAwake"), isOn: $keepAwake)
+                .onChange(of: keepAwake) { _, newValue in
+                    AppSettings.keepAwakeWhileConnected = newValue
+                }
+            Text(L("settings.keepAwake.help"))
+                .font(.caption)
+                .foregroundStyle(.secondary)
 
             Section {
                 LabeledContent(L("settings.hostName"), value: HostIdentity.hostName)

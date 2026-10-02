@@ -116,3 +116,6 @@
 "control.speed" = "Pointer speed";
 "control.speedValue" = "%.1f×";
 "control.status.linkLost" = "The control server stopped before Teras could use it.";
+
+"settings.keepAwake" = "Keep this Mac awake while a device is connected";
+"settings.keepAwake.help" = "Applies to the next connection. A sleeping Mac cannot be woken from the phone; the display must stay on for streaming.";

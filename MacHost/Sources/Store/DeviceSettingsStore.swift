@@ -111,6 +111,13 @@ final class DeviceSettingsStore: @unchecked Sendable {
 /// Application-wide preferences.
 enum AppSettings {
     private static let showStatsKey = "app.showStats"
+    private static let keepAwakeKey = "app.keepAwakeWhileConnected"
+    /// Hold the Mac (and its display, which the virtual display depends on)
+    /// awake while at least one receiver is streaming. Default on.
+    static var keepAwakeWhileConnected: Bool {
+        get { UserDefaults.standard.object(forKey: keepAwakeKey) as? Bool ?? true }
+        set { UserDefaults.standard.set(newValue, forKey: keepAwakeKey) }
+    }
     private static let completedOnboardingKey = "app.completedOnboarding"
 
     static var showStats: Bool {
